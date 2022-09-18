@@ -1,0 +1,1 @@
+{"cells":[{"string":"define ps\n\nassume \n\tforall S T.\n\tS : ps T = (forall x : S. x : T)","compiled":true,"items":[{"kind":"definition","type":"ps"},{"kind":"assumption","expr":"forall(S)(forall(T)(=(ps(T)(S))(forall(x)(if(S(x))(T(x))))))"}]}],"version":30}
