@@ -1,0 +1,31 @@
+{
+    "cells": [
+        {
+            "string": "define option\n\ndefine Some : forall T. T -> option T\ndefine None : forall T. option T",
+            "compiled": true,
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "option"
+                },
+                {
+                    "kind": "definition",
+                    "type": "Some"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(T)(forall(T658)(if(T(T658))(option(T)(Some(T658)))))"
+                },
+                {
+                    "kind": "definition",
+                    "type": "None"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(T)(option(T)(None))"
+                }
+            ]
+        }
+    ],
+    "version": 30
+}
