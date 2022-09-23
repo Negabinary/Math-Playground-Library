@@ -1,7 +1,7 @@
 {
     "cells": [
         {
-            "string": "define List\ndefine [] : forall T. List T\ndefine cons : forall T. T -> List T -> List T",
+            "string": "define List\ndefine [] : forall T. List T\ndefine Cons : forall T. T -> List T -> List T\nassume forall T, l : List T. l = [] or (exists x : T, xs : List T. l = Cons x xs)\nassume forall T, l : List T, P.\n\tif P [] then\n\tif forall x : T, xs : List T. if P xs then P (Cons x xs) then\n\tP l",
             "compiled": true,
             "items": [
                 {
@@ -18,26 +18,34 @@
                 },
                 {
                     "kind": "definition",
-                    "type": "cons"
+                    "type": "Cons"
                 },
                 {
                     "kind": "assumption",
-                    "expr": "forall(T)(forall(T658)(if(T(T658))(forall(T779)(if(List(T)(T779))(List(T)(cons(T658)(T779)))))))"
+                    "expr": "forall(T)(forall(T215)(if(T(T215))(forall(T428)(if(List(T)(T428))(List(T)(Cons(T215)(T428)))))))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(T)(forall(l)(if(List(T)(l))(or(=(l)([]))(exists(x)(and(T(x))(exists(xs)(and(List(T)(xs))(=(l)(Cons(x)(xs))))))))))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))"
                 }
             ]
         },
         {
-            "string": "assume forall T. forall x y:T, xs ys:List T.\n\tif cons x xs = cons y ys then\n\t\tx = y and xs = ys",
+            "string": "assume forall T. forall x y:T, xs ys:List T.\n\tif Cons x xs = Cons y ys then\n\t\tx = y and xs = ys",
             "compiled": true,
             "items": [
                 {
                     "kind": "assumption",
-                    "expr": "forall(T)(forall(x)(if(T(x))(forall(y)(if(T(y))(forall(xs)(if(List(T)(xs))(forall(ys)(if(List(T)(ys))(if(=(cons(x)(xs))(cons(y)(ys)))(and(=(x)(y))(=(xs)(ys))))))))))))"
+                    "expr": "forall(T)(forall(x)(if(T(x))(forall(y)(if(T(y))(forall(xs)(if(List(T)(xs))(forall(ys)(if(List(T)(ys))(if(=(Cons(x)(xs))(Cons(y)(ys)))(and(=(x)(y))(=(xs)(ys))))))))))))"
                 }
             ]
         },
         {
-            "string": "import std.arith.peano\n\ndefine len\n\nassume len [] = 0\nassume forall T. forall x:T, xs:List T.\n\tlen (cons x xs) = S(len xs)",
+            "string": "import std.arith.peano\n\ndefine len\n\nassume len [] = 0\nassume forall T. forall x:T, xs:List T.\n\tlen (Cons x xs) = S(len xs)\n\nshow len : forall T. List T -> Nat",
             "compiled": true,
             "items": [
                 {
@@ -55,12 +63,515 @@
                 },
                 {
                     "kind": "assumption",
-                    "expr": "forall(T)(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(=(len(cons(x)(xs)))(S(len(xs))))))))"
+                    "expr": "forall(T)(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(=(len(Cons(x)(xs)))(S(len(xs))))))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(T)(forall(T350)(if(List(T)(T350))(Nat(len(T350)))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(T)(forall(T350)(if(List(T)(T350))(Nat(len(T350)))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "Nat(len(T350))",
+                                    "definitions": [
+                                        "T",
+                                        "T350"
+                                    ],
+                                    "assumptions": [
+                                        "List(T)(T350)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EliminatedLambdaJustification",
+                                    "location_expr_item": "Nat(len(T350))",
+                                    "location_indeces": [
+
+                                    ],
+                                    "replace_value": "T350",
+                                    "replace_with": "l'",
+                                    "replace_positions": [
+                                        true
+                                    ]
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "lambda(l')(Nat(len(l')))(T350)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(List(T)(T350))(if(lambda(l')(Nat(len(l')))([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(Nat(len(l')))(xs))(lambda(l')(Nat(len(l')))(Cons(x)(xs))))))))(lambda(l')(Nat(len(l')))(T350))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "List(T)(T350)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "lambda(l')(Nat(len(l')))([])",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "lambda(l')(Nat(len(l')))([])",
+                                                    "location_indeces": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "Nat(len([]))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "EqualityJustification",
+                                                            "location_expr_item": "Nat(len([]))",
+                                                            "location_indeces": [
+                                                                0
+                                                            ],
+                                                            "replace_with": "0",
+                                                            "forwards": false
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "Nat(0)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(len([]))(0)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(Nat(len(l')))(xs))(lambda(l')(Nat(len(l')))(Cons(x)(xs)))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(Nat(len(l')))(xs))(lambda(l')(Nat(len(l')))(Cons(x)(xs)))))))",
+                                                    "location_indeces": [
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        0
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(Nat(len(xs)))(lambda(l')(Nat(len(l')))(Cons(x)(xs)))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "IntroducedLambdaJustification",
+                                                            "location_expr_item": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(Nat(len(xs)))(lambda(l')(Nat(len(l')))(Cons(x)(xs)))))))",
+                                                            "location_indeces": [
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(Nat(len(xs)))(Nat(len(Cons(x)(xs))))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ImplicationJustification",
+                                                                    "keep_condition_ids": [
+
+                                                                    ],
+                                                                    "keep_definition_ids": [
+
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "Nat(len(Cons(x)(xs)))",
+                                                                            "definitions": [
+                                                                                "x",
+                                                                                "xs"
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "T(x)",
+                                                                                "List(T)(xs)",
+                                                                                "Nat(len(xs))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "EqualityJustification",
+                                                                            "location_expr_item": "Nat(len(Cons(x)(xs)))",
+                                                                            "location_indeces": [
+                                                                                0
+                                                                            ],
+                                                                            "replace_with": "S(len(xs))",
+                                                                            "forwards": false
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "Nat(S(len(xs)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                    "implication": "if(Nat(len(xs)))(Nat(S(len(xs))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "Nat(len(xs))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "if(Nat(len(xs)))(Nat(S(len(xs))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "=(len(Cons(x)(xs)))(S(len(xs)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                    "implication": "if(T(x))(if(List(T)(xs))(=(len(Cons(x)(xs)))(S(len(xs)))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "T(x)",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "List(T)(xs)",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "if(T(x))(if(List(T)(xs))(=(len(Cons(x)(xs)))(S(len(xs)))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(x)(forall(xs)(if(T(x))(if(List(T)(xs))(=(len(Cons(x)(xs)))(S(len(xs)))))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(x)(forall(xs)(if(T(x))(if(List(T)(xs))(=(len(Cons(x)(xs)))(S(len(xs)))))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(T)(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(=(len(Cons(x)(xs)))(S(len(xs))))))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(T)(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(=(len(Cons(x)(xs)))(S(len(xs))))))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(List(T)(T350))(if(lambda(l')(Nat(len(l')))([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(Nat(len(l')))(xs))(lambda(l')(Nat(len(l')))(Cons(x)(xs))))))))(lambda(l')(Nat(len(l')))(T350))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(l)(forall(P)(if(List(T)(l))(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(l)(forall(P)(if(List(T)(l))(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         },
         {
-            "string": "define list_contains\n\nassume forall x. ¬(list_contains [] x)\nassume forall x y ys. list_contains (cons y ys) x = (x = y or list_contains ys x)",
+            "string": "define list_contains\n\nassume forall x. ¬(list_contains [] x)\nassume forall x y ys. list_contains (Cons y ys) x = (x = y or list_contains ys x)",
             "compiled": true,
             "items": [
                 {
@@ -73,12 +584,12 @@
                 },
                 {
                     "kind": "assumption",
-                    "expr": "forall(x)(forall(y)(forall(ys)(=(list_contains(cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))"
+                    "expr": "forall(x)(forall(y)(forall(ys)(=(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))"
                 }
             ]
         },
         {
-            "string": "define no_duplicates\n\nassume no_duplicates []\nassume forall x xs. no_duplicates (cons x xs) = (¬ (list_contains xs x) and no_duplicates xs)",
+            "string": "define no_duplicates\n\nassume no_duplicates []\nassume forall x xs. no_duplicates (Cons x xs) = (¬ (list_contains xs x) and no_duplicates xs)",
             "compiled": true,
             "items": [
                 {
@@ -91,7 +602,1420 @@
                 },
                 {
                     "kind": "assumption",
-                    "expr": "forall(x)(forall(xs)(=(no_duplicates(cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))"
+                    "expr": "forall(x)(forall(xs)(=(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))"
+                }
+            ]
+        },
+        {
+            "string": "define map\nassume forall f. map f [] = []\nassume forall f x xs. map f (Cons x xs) = Cons (f x) (map f xs)\nshow forall P Q, f : P -> Q, l : List P. map f l : List Q",
+            "compiled": true,
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "map"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(f)(=(map(f)([]))([]))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(f)(forall(x)(forall(xs)(=(map(f)(Cons(x)(xs)))(Cons(f(x))(map(f)(xs))))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(P)(forall(Q)(forall(f)(if(forall(T124)(if(P(T124))(Q(f(T124)))))(forall(l)(if(List(P)(l))(List(Q)(map(f)(l))))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(P)(forall(Q)(forall(f)(if(forall(T124)(if(P(T124))(Q(f(T124)))))(forall(l)(if(List(P)(l))(List(Q)(map(f)(l))))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "List(Q)(map(f)(l))",
+                                    "definitions": [
+                                        "P",
+                                        "Q",
+                                        "f",
+                                        "l"
+                                    ],
+                                    "assumptions": [
+                                        "forall(T124)(if(P(T124))(Q(f(T124))))",
+                                        "List(P)(l)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EliminatedLambdaJustification",
+                                    "location_expr_item": "List(Q)(map(f)(l))",
+                                    "location_indeces": [
+
+                                    ],
+                                    "replace_value": "l",
+                                    "replace_with": "l'",
+                                    "replace_positions": [
+                                        true
+                                    ]
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "lambda(l')(List(Q)(map(f)(l')))(l)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(List(P)(l))(if(lambda(l')(List(Q)(map(f)(l')))([]))(if(forall(x)(if(P(x))(forall(xs)(if(List(P)(xs))(if(lambda(l')(List(Q)(map(f)(l')))(xs))(lambda(l')(List(Q)(map(f)(l')))(Cons(x)(xs))))))))(lambda(l')(List(Q)(map(f)(l')))(l))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "List(P)(l)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "lambda(l')(List(Q)(map(f)(l')))([])",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "lambda(l')(List(Q)(map(f)(l')))([])",
+                                                    "location_indeces": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "List(Q)(map(f)([]))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "EqualityJustification",
+                                                            "location_expr_item": "List(Q)(map(f)([]))",
+                                                            "location_indeces": [
+                                                                1
+                                                            ],
+                                                            "replace_with": "[]",
+                                                            "forwards": false
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "List(Q)([])",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(T)(List(T)([]))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(T)(List(T)([]))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(map(f)([]))([])",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(f)(=(map(f)([]))([]))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(f)(=(map(f)([]))([]))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(x)(if(P(x))(forall(xs)(if(List(P)(xs))(if(lambda(l')(List(Q)(map(f)(l')))(xs))(lambda(l')(List(Q)(map(f)(l')))(Cons(x)(xs)))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "forall(x)(if(P(x))(forall(xs)(if(List(P)(xs))(if(lambda(l')(List(Q)(map(f)(l')))(xs))(lambda(l')(List(Q)(map(f)(l')))(Cons(x)(xs)))))))",
+                                                    "location_indeces": [
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        0
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(P(x))(forall(xs)(if(List(P)(xs))(if(List(Q)(map(f)(xs)))(lambda(l')(List(Q)(map(f)(l')))(Cons(x)(xs)))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "IntroducedLambdaJustification",
+                                                            "location_expr_item": "forall(x)(if(P(x))(forall(xs)(if(List(P)(xs))(if(List(Q)(map(f)(xs)))(lambda(l')(List(Q)(map(f)(l')))(Cons(x)(xs)))))))",
+                                                            "location_indeces": [
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(if(P(x))(forall(xs)(if(List(P)(xs))(if(List(Q)(map(f)(xs)))(List(Q)(map(f)(Cons(x)(xs))))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ImplicationJustification",
+                                                                    "keep_condition_ids": [
+
+                                                                    ],
+                                                                    "keep_definition_ids": [
+
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "List(Q)(map(f)(Cons(x)(xs)))",
+                                                                            "definitions": [
+                                                                                "x",
+                                                                                "xs"
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "P(x)",
+                                                                                "List(P)(xs)",
+                                                                                "List(Q)(map(f)(xs))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "EqualityJustification",
+                                                                            "location_expr_item": "List(Q)(map(f)(Cons(x)(xs)))",
+                                                                            "location_indeces": [
+                                                                                1
+                                                                            ],
+                                                                            "replace_with": "Cons(f(x))(map(f)(xs))",
+                                                                            "forwards": false
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "List(Q)(Cons(f(x))(map(f)(xs)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                    "implication": "if(Q(f(x)))(if(List(Q)(map(f)(xs)))(List(Q)(Cons(f(x))(map(f)(xs)))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "Q(f(x))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(P(x))(Q(f(x)))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "P(x)",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(P(x))(Q(f(x)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(T124)(if(P(T124))(Q(f(T124))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(T124)(if(P(T124))(Q(f(T124))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "List(Q)(map(f)(xs))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "if(Q(f(x)))(if(List(Q)(map(f)(xs)))(List(Q)(Cons(f(x))(map(f)(xs)))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(T)(forall(T215)(if(T(T215))(forall(T428)(if(List(T)(T428))(List(T)(Cons(T215)(T428)))))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(T)(forall(T215)(if(T(T215))(forall(T428)(if(List(T)(T428))(List(T)(Cons(T215)(T428)))))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "=(map(f)(Cons(x)(xs)))(Cons(f(x))(map(f)(xs)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "RefineJustification",
+                                                                                    "general": "forall(f)(forall(x)(forall(xs)(=(map(f)(Cons(x)(xs)))(Cons(f(x))(map(f)(xs))))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "forall(f)(forall(x)(forall(xs)(=(map(f)(Cons(x)(xs)))(Cons(f(x))(map(f)(xs))))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(List(P)(l))(if(lambda(l')(List(Q)(map(f)(l')))([]))(if(forall(x)(if(P(x))(forall(xs)(if(List(P)(xs))(if(lambda(l')(List(Q)(map(f)(l')))(xs))(lambda(l')(List(Q)(map(f)(l')))(Cons(x)(xs))))))))(lambda(l')(List(Q)(map(f)(l')))(l))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(l)(forall(P)(if(List(.P)(l))(if(P([]))(if(forall(x)(if(.P(x))(forall(xs)(if(List(.P)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(l)(forall(P)(if(List(.P)(l))(if(P([]))(if(forall(x)(if(.P(x))(forall(xs)(if(List(.P)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "string": "import std.bool\n\ndefine count\nassume forall p. count p [] = 0\nassume forall p x xs. if p x then count p (Cons x xs) = S (count p xs)\nassume forall p x xs. if ¬ (p x) then count p (Cons x xs) = (count p xs)\nshow count : forall T. (T -> bool) -> List T -> Nat",
+            "compiled": true,
+            "items": [
+                {
+                    "kind": "import",
+                    "module": "std.bool",
+                    "namespace": false
+                },
+                {
+                    "kind": "definition",
+                    "type": "count"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(p)(=(count(p)([]))(0))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(p)(forall(x)(forall(xs)(if(p(x))(=(count(p)(Cons(x)(xs)))(S(count(p)(xs)))))))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(p)(forall(x)(forall(xs)(if(¬(p(x)))(=(count(p)(Cons(x)(xs)))(count(p)(xs))))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(T)(forall(T376)(if(forall(T884)(if(T(T884))(bool(T376(T884)))))(forall(T293)(if(List(T)(T293))(Nat(count(T376)(T293)))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(T)(forall(T376)(if(forall(T884)(if(T(T884))(bool(T376(T884)))))(forall(T293)(if(List(T)(T293))(Nat(count(T376)(T293)))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "Nat(count(T376)(T293))",
+                                    "definitions": [
+                                        "T",
+                                        "T376",
+                                        "T293"
+                                    ],
+                                    "assumptions": [
+                                        "forall(T884)(if(T(T884))(bool(T376(T884))))",
+                                        "List(T)(T293)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EliminatedLambdaJustification",
+                                    "location_expr_item": "Nat(count(T376)(T293))",
+                                    "location_indeces": [
+
+                                    ],
+                                    "replace_value": "T293",
+                                    "replace_with": "l'",
+                                    "replace_positions": [
+                                        true
+                                    ]
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "lambda(l')(Nat(count(T376)(l')))(T293)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(List(T)(T293))(if(lambda(l')(Nat(count(T376)(l')))([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(Nat(count(T376)(l')))(xs))(lambda(l')(Nat(count(T376)(l')))(Cons(x)(xs))))))))(lambda(l')(Nat(count(T376)(l')))(T293))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "List(T)(T293)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "lambda(l')(Nat(count(T376)(l')))([])",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "lambda(l')(Nat(count(T376)(l')))([])",
+                                                    "location_indeces": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "Nat(count(T376)([]))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "EqualityJustification",
+                                                            "location_expr_item": "Nat(count(T376)([]))",
+                                                            "location_indeces": [
+                                                                0
+                                                            ],
+                                                            "replace_with": "0",
+                                                            "forwards": false
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "Nat(0)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(count(T376)([]))(0)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(p)(=(count(p)([]))(0))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(p)(=(count(p)([]))(0))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(Nat(count(T376)(l')))(xs))(lambda(l')(Nat(count(T376)(l')))(Cons(x)(xs)))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(Nat(count(T376)(l')))(xs))(lambda(l')(Nat(count(T376)(l')))(Cons(x)(xs)))))))",
+                                                    "location_indeces": [
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        0
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(Nat(count(T376)(xs)))(lambda(l')(Nat(count(T376)(l')))(Cons(x)(xs)))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "IntroducedLambdaJustification",
+                                                            "location_expr_item": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(Nat(count(T376)(xs)))(lambda(l')(Nat(count(T376)(l')))(Cons(x)(xs)))))))",
+                                                            "location_indeces": [
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(Nat(count(T376)(xs)))(Nat(count(T376)(Cons(x)(xs))))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ImplicationJustification",
+                                                                    "keep_condition_ids": [
+
+                                                                    ],
+                                                                    "keep_definition_ids": [
+
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "Nat(count(T376)(Cons(x)(xs)))",
+                                                                            "definitions": [
+                                                                                "x",
+                                                                                "xs"
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "T(x)",
+                                                                                "List(T)(xs)",
+                                                                                "Nat(count(T376)(xs))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "CaseSplitJustification",
+                                                                            "disjunction": "or(=(T376(x))(true))(=(T376(x))(false))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "Nat(count(T376)(Cons(x)(xs)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+                                                                                        "=(T376(x))(true)"
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "EqualityJustification",
+                                                                                    "location_expr_item": "Nat(count(T376)(Cons(x)(xs)))",
+                                                                                    "location_indeces": [
+                                                                                        0
+                                                                                    ],
+                                                                                    "replace_with": "S(count(T376)(xs))",
+                                                                                    "forwards": false
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "Nat(S(count(T376)(xs)))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(Nat(count(T376)(xs)))(Nat(S(count(T376)(xs))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "Nat(count(T376)(xs))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(Nat(count(T376)(xs)))(Nat(S(count(T376)(xs))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "=(count(T376)(Cons(x)(xs)))(S(count(T376)(xs)))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(T376(x))(=(count(T376)(Cons(x)(xs)))(S(count(T376)(xs))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "T376(x)",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "EqualityJustification",
+                                                                                                    "location_expr_item": "T376(x)",
+                                                                                                    "location_indeces": [
+
+                                                                                                    ],
+                                                                                                    "replace_with": "true",
+                                                                                                    "forwards": false
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "true",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "=(T376(x))(true)",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(T376(x))(=(count(T376)(Cons(x)(xs)))(S(count(T376)(xs))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(p)(forall(x)(forall(xs)(if(p(x))(=(count(p)(Cons(x)(xs)))(S(count(p)(xs)))))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(p)(forall(x)(forall(xs)(if(p(x))(=(count(p)(Cons(x)(xs)))(S(count(p)(xs)))))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "Nat(count(T376)(Cons(x)(xs)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+                                                                                        "=(T376(x))(false)"
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "EqualityJustification",
+                                                                                    "location_expr_item": "Nat(count(T376)(Cons(x)(xs)))",
+                                                                                    "location_indeces": [
+                                                                                        0
+                                                                                    ],
+                                                                                    "replace_with": "count(T376)(xs)",
+                                                                                    "forwards": false
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "Nat(count(T376)(xs))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "=(count(T376)(Cons(x)(xs)))(count(T376)(xs))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(¬(T376(x)))(=(count(T376)(Cons(x)(xs)))(count(T376)(xs)))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "¬(T376(x))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "EqualityJustification",
+                                                                                                    "location_expr_item": "¬(T376(x))",
+                                                                                                    "location_indeces": [
+                                                                                                        0
+                                                                                                    ],
+                                                                                                    "replace_with": "false",
+                                                                                                    "forwards": false
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "¬(false)",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "=(T376(x))(false)",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(¬(T376(x)))(=(count(T376)(Cons(x)(xs)))(count(T376)(xs)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(p)(forall(x)(forall(xs)(if(¬(p(x)))(=(count(p)(Cons(x)(xs)))(count(p)(xs))))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(p)(forall(x)(forall(xs)(if(¬(p(x)))(=(count(p)(Cons(x)(xs)))(count(p)(xs))))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "or(=(T376(x))(true))(=(T376(x))(false))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                    "implication": "if(bool(T376(x)))(or(=(T376(x))(true))(=(T376(x))(false)))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "bool(T376(x))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(T(x))(bool(T376(x)))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "T(x)",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(T(x))(bool(T376(x)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(T884)(if(T(T884))(bool(T376(T884))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(T884)(if(T(T884))(bool(T376(T884))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "if(bool(T376(x)))(or(=(T376(x))(true))(=(T376(x))(false)))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(b)(if(bool(b))(or(=(b)(true))(=(b)(false))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(b)(if(bool(b))(or(=(b)(true))(=(b)(false))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(List(T)(T293))(if(lambda(l')(Nat(count(T376)(l')))([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(Nat(count(T376)(l')))(xs))(lambda(l')(Nat(count(T376)(l')))(Cons(x)(xs))))))))(lambda(l')(Nat(count(T376)(l')))(T293))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(l)(forall(P)(if(List(T)(l))(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(l)(forall(P)(if(List(T)(l))(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         }
