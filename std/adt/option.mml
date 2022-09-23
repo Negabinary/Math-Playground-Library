@@ -1,7 +1,7 @@
 {
     "cells": [
         {
-            "string": "define option\n\ndefine Some : forall T. T -> option T\ndefine None : forall T. option T",
+            "string": "define option\n\ndefine Some : forall T. T -> option T\ndefine None : forall T. option T\nassume forall T x. if x : option T then x = None or (exists t : T. x = Some t)",
             "compiled": true,
             "items": [
                 {
@@ -14,7 +14,7 @@
                 },
                 {
                     "kind": "assumption",
-                    "expr": "forall(T)(forall(T658)(if(T(T658))(option(T)(Some(T658)))))"
+                    "expr": "forall(T)(forall(T722)(if(T(T722))(option(T)(Some(T722)))))"
                 },
                 {
                     "kind": "definition",
@@ -23,6 +23,10 @@
                 {
                     "kind": "assumption",
                     "expr": "forall(T)(option(T)(None))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(T)(forall(x)(if(option(T)(x))(or(=(x)(None))(exists(t)(and(T(t))(=(x)(Some(t))))))))"
                 }
             ]
         }
