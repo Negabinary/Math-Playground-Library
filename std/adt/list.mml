@@ -1,1 +1,100 @@
-{"cells":[{"string":"define List\ndefine [] : forall T. List T\ndefine cons : forall T. T -> List T -> List T","compiled":true,"items":[{"kind":"definition","type":"List"},{"kind":"definition","type":"[]"},{"kind":"assumption","expr":"forall(T)(List(T)([]))"},{"kind":"definition","type":"cons"},{"kind":"assumption","expr":"forall(T)(forall(T658)(if(T(T658))(forall(T779)(if(List(T)(T779))(List(T)(cons(T658)(T779)))))))"}]},{"string":"assume forall T. forall x y:T, xs ys:List T.\n\tif cons x xs = cons y ys then\n\t\tx = y and xs = ys","compiled":true,"items":[{"kind":"assumption","expr":"forall(T)(forall(x)(if(T(x))(forall(y)(if(T(y))(forall(xs)(if(List(T)(xs))(forall(ys)(if(List(T)(ys))(if(=(cons(x)(xs))(cons(y)(ys)))(and(=(x)(y))(=(xs)(ys))))))))))))"}]},{"string":"import std.arith.peano\n\ndefine len\n\nassume len [] = 0\nassume forall T. forall x:T, xs:List T.\n\tlen (cons x xs) = S(len xs)","compiled":true,"items":[{"kind":"import","module":"std.arith.peano","namespace":false},{"kind":"definition","type":"len"},{"kind":"assumption","expr":"=(len([]))(0)"},{"kind":"assumption","expr":"forall(T)(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(=(len(cons(x)(xs)))(S(len(xs))))))))"}]},{"string":"show 0","compiled":true,"items":[{"kind":"theorem","expr":"0","proof":{"requirement":{"goal":"0","definitions":[],"assumptions":[]},"justification":{"justification_version":1,"justification_type":"MissingJustification"},"dependencies":[]}}]}],"version":30}
+{
+    "cells": [
+        {
+            "string": "define List\ndefine [] : forall T. List T\ndefine cons : forall T. T -> List T -> List T",
+            "compiled": true,
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "List"
+                },
+                {
+                    "kind": "definition",
+                    "type": "[]"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(T)(List(T)([]))"
+                },
+                {
+                    "kind": "definition",
+                    "type": "cons"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(T)(forall(T658)(if(T(T658))(forall(T779)(if(List(T)(T779))(List(T)(cons(T658)(T779)))))))"
+                }
+            ]
+        },
+        {
+            "string": "assume forall T. forall x y:T, xs ys:List T.\n\tif cons x xs = cons y ys then\n\t\tx = y and xs = ys",
+            "compiled": true,
+            "items": [
+                {
+                    "kind": "assumption",
+                    "expr": "forall(T)(forall(x)(if(T(x))(forall(y)(if(T(y))(forall(xs)(if(List(T)(xs))(forall(ys)(if(List(T)(ys))(if(=(cons(x)(xs))(cons(y)(ys)))(and(=(x)(y))(=(xs)(ys))))))))))))"
+                }
+            ]
+        },
+        {
+            "string": "import std.arith.peano\n\ndefine len\n\nassume len [] = 0\nassume forall T. forall x:T, xs:List T.\n\tlen (cons x xs) = S(len xs)",
+            "compiled": true,
+            "items": [
+                {
+                    "kind": "import",
+                    "module": "std.arith.peano",
+                    "namespace": false
+                },
+                {
+                    "kind": "definition",
+                    "type": "len"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "=(len([]))(0)"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(T)(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(=(len(cons(x)(xs)))(S(len(xs))))))))"
+                }
+            ]
+        },
+        {
+            "string": "define list_contains\n\nassume forall x. ¬(list_contains [] x)\nassume forall x y ys. list_contains (cons y ys) x = (x = y or list_contains ys x)",
+            "compiled": true,
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "list_contains"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(x)(¬(list_contains([])(x)))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(x)(forall(y)(forall(ys)(=(list_contains(cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))"
+                }
+            ]
+        },
+        {
+            "string": "define no_duplicates\n\nassume no_duplicates []\nassume forall x xs. no_duplicates (cons x xs) = (¬ (list_contains xs x) and no_duplicates xs)",
+            "compiled": true,
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "no_duplicates"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "no_duplicates([])"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(x)(forall(xs)(=(no_duplicates(cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))"
+                }
+            ]
+        }
+    ],
+    "version": 30
+}
