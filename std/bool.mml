@@ -3137,6 +3137,111 @@
                     }
                 }
             ]
+        },
+        {
+            "string": "show ¬(true = false)",
+            "compiled": true,
+            "items": [
+                {
+                    "kind": "theorem",
+                    "expr": "¬(=(true)(false))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "¬(=(true)(false))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "ContradictionJustification",
+                            "contradiction": "false"
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "false",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+                                        "=(true)(false)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EqualityJustification",
+                                    "location_expr_item": "false",
+                                    "location_indeces": [
+
+                                    ],
+                                    "replace_with": "true",
+                                    "forwards": true
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "true",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "AssumptionJustification"
+                                        },
+                                        "dependencies": [
+
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "=(true)(false)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "AssumptionJustification"
+                                        },
+                                        "dependencies": [
+
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "requirement": {
+                                    "goal": "¬(false)",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+                                        "=(true)(false)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "AssumptionJustification"
+                                },
+                                "dependencies": [
+
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
         }
     ],
     "version": 30
