@@ -5,7 +5,7 @@
             "compiled": false
         },
         {
-            "string": "import std.arith.nat\nshow + 2 2 = 4",
+            "string": "import std.arith.peano\nshow + 2 2 = 4",
             "compiled": false
         }
     ],
