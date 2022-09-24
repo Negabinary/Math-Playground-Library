@@ -1,0 +1,13 @@
+{
+    "cells": [
+        {
+            "string": "show forall A B C.\n\tif\n\t\tif A then B\n\tthen\n\tif\n\t\tif B then C\n\tthen\n\tif A then C",
+            "compiled": false
+        },
+        {
+            "string": "import std.arith.nat\nshow + 2 2 = 4",
+            "compiled": false
+        }
+    ],
+    "version": 30
+}
