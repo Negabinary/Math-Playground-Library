@@ -628,6 +628,479 @@
                     }
                 }
             ]
+        },
+        {
+            "string": "show forall P. if (exists x. ¬ (P x)) then ¬(forall x. P(x))\nshow forall P. ¬ (exists x. P x) = (forall x. ¬ (P x))",
+            "compiled": true,
+            "title": "Quantifier Negatives",
+            "items": [
+                {
+                    "kind": "theorem",
+                    "expr": "forall(P)(if(exists(x)(¬(P(x))))(¬(forall(x)(P(x)))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(P)(if(exists(x)(¬(P(x))))(¬(forall(x)(P(x)))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "¬(forall(x)(P(x)))",
+                                    "definitions": [
+                                        "P"
+                                    ],
+                                    "assumptions": [
+                                        "exists(x)(¬(P(x)))"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "InstantiateJustification",
+                                    "new_type": "x",
+                                    "existential": "exists(x)(¬(P(x)))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "¬(forall(x)(P(x)))",
+                                            "definitions": [
+                                                "x"
+                                            ],
+                                            "assumptions": [
+                                                "¬(P(x))"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ContradictionJustification",
+                                            "contradiction": "P(x)"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "P(x)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "forall(x)(P(x))"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(x)(P(x))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(P(x))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "¬(P(x))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "forall(x)(P(x))"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "exists(x)(¬(P(x)))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "AssumptionJustification"
+                                        },
+                                        "dependencies": [
+
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(P)(=(¬(exists(x)(P(x))))(forall(x)(¬(P(x)))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(P)(=(¬(exists(x)(P(x))))(forall(x)(¬(P(x)))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "=(¬(exists(x)(P(x))))(forall(x)(¬(P(x))))",
+                                    "definitions": [
+                                        "P"
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "BothDirectionsJustification"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "if(¬(exists(x)(P(x))))(forall(x)(¬(P(x))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ImplicationJustification",
+                                            "keep_condition_ids": [
+
+                                            ],
+                                            "keep_definition_ids": [
+
+                                            ]
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "¬(P(x))",
+                                                    "definitions": [
+                                                        "x"
+                                                    ],
+                                                    "assumptions": [
+                                                        "¬(exists(x)(P(x)))"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "ContradictionJustification",
+                                                    "contradiction": "exists(y)(P(y))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "exists(y)(P(y))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "P(x)"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "WitnessJustification",
+                                                            "witness": "x"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "P(x)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "¬(exists(y)(P(y)))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "P(x)"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "if(forall(x)(¬(P(x))))(¬(exists(x)(P(x))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ImplicationJustification",
+                                            "keep_condition_ids": [
+
+                                            ],
+                                            "keep_definition_ids": [
+
+                                            ]
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "¬(exists(x)(P(x)))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "forall(x)(¬(P(x)))"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "ContradictionJustification",
+                                                    "contradiction": "forall(x)(if(x)(x))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(x)(x))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "exists(x)(P(x))"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "ImplicationJustification",
+                                                            "keep_condition_ids": [
+
+                                                            ],
+                                                            "keep_definition_ids": [
+
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "x",
+                                                                    "definitions": [
+                                                                        "x"
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "x"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "¬(forall(x)(if(x)(x)))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "exists(x)(P(x))"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "InstantiateJustification",
+                                                            "new_type": "x",
+                                                            "existential": "exists(x)(P(x))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "¬(forall(x)(if(x)(x)))",
+                                                                    "definitions": [
+                                                                        "x"
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "P(x)"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ContradictionJustification",
+                                                                    "contradiction": "P(x)"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "P(x)",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "forall(x)(if(x)(x))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "¬(P(x))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "forall(x)(if(x)(x))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "RefineJustification",
+                                                                            "general": "forall(x)(¬(P(x)))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "forall(x)(¬(P(x)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "AssumptionJustification"
+                                                                                },
+                                                                                "dependencies": [
+
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "exists(x)(P(x))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
         }
     ],
     "version": 30
