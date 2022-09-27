@@ -1,0 +1,634 @@
+{
+    "cells": [
+        {
+            "string": "show forall x y. if (¬ x or ¬ y) then ¬(x and y)",
+            "compiled": true,
+            "title": "De Morgan's Laws",
+            "items": [
+                {
+                    "kind": "theorem",
+                    "expr": "forall(x)(forall(y)(if(or(¬(x))(¬(y)))(¬(and(x)(y)))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(x)(forall(y)(if(or(¬(x))(¬(y)))(¬(and(x)(y)))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "¬(and(x)(y))",
+                                    "definitions": [
+                                        "x",
+                                        "y"
+                                    ],
+                                    "assumptions": [
+                                        "or(¬(x))(¬(y))"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "CaseSplitJustification",
+                                    "disjunction": "or(¬(x))(¬(y))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "¬(and(x)(y))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+                                                "¬(x)"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ContradictionJustification",
+                                            "contradiction": "x"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "x",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "x",
+                                                        "y"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "¬(x)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "x",
+                                                        "y"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "¬(and(x)(y))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+                                                "¬(y)"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ContradictionJustification",
+                                            "contradiction": "y"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "y",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "x",
+                                                        "y"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "¬(y)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "x",
+                                                        "y"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "or(¬(x))(¬(y))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "AssumptionJustification"
+                                        },
+                                        "dependencies": [
+
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "string": "show forall x y. ¬(x or y) = (¬ x and ¬ y)",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "theorem",
+                    "expr": "forall(x)(forall(y)(=(¬(or(x)(y)))(and(¬(x))(¬(y)))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(x)(forall(y)(=(¬(or(x)(y)))(and(¬(x))(¬(y)))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "=(¬(or(x)(y)))(and(¬(x))(¬(y)))",
+                                    "definitions": [
+                                        "x",
+                                        "y"
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "BothDirectionsJustification"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "if(¬(or(x)(y)))(and(¬(x))(¬(y)))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ImplicationJustification",
+                                            "keep_condition_ids": [
+
+                                            ],
+                                            "keep_definition_ids": [
+
+                                            ]
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "and(¬(x))(¬(y))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "¬(or(x)(y))"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "CombineJustification"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "¬(x)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "ContradictionJustification",
+                                                            "contradiction": "or(x)(y)"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "or(x)(y)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "x"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "OneOfJustification",
+                                                                    "keep_ids": [
+                                                                        true,
+                                                                        false
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "x",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "¬(or(x)(y))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "x"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "¬(y)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "ContradictionJustification",
+                                                            "contradiction": "or(x)(y)"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "or(x)(y)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "y"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "OneOfJustification",
+                                                                    "keep_ids": [
+                                                                        false,
+                                                                        true
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "y",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "¬(or(x)(y))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "y"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "if(and(¬(x))(¬(y)))(¬(or(x)(y)))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ImplicationJustification",
+                                            "keep_condition_ids": [
+
+                                            ],
+                                            "keep_definition_ids": [
+
+                                            ]
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "¬(or(x)(y))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "¬(x)",
+                                                        "¬(y)"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "ContradictionJustification",
+                                                    "contradiction": "or(x)(y)"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "or(x)(y)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "or(x)(y)"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "¬(or(x)(y))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "or(x)(y)"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "CaseSplitJustification",
+                                                            "disjunction": "or(x)(y)"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "¬(or(x)(y))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "x"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ContradictionJustification",
+                                                                    "contradiction": "x"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "x",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "or(x)(y)"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "¬(x)",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "or(x)(y)"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "¬(or(x)(y))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "y"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ContradictionJustification",
+                                                                    "contradiction": "y"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "y",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "or(x)(y)"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "¬(y)",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "or(x)(y)"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "or(x)(y)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "version": 30
+}
