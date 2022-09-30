@@ -1101,6 +1101,132 @@
                     }
                 }
             ]
+        },
+        {
+            "string": "show forall A B. if (if B then A) then (if ¬ A then ¬ B)",
+            "compiled": true,
+            "title": "Contrapositive",
+            "items": [
+                {
+                    "kind": "theorem",
+                    "expr": "forall(A)(forall(B)(if(if(B)(A))(if(¬(A))(¬(B)))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(A)(forall(B)(if(if(B)(A))(if(¬(A))(¬(B)))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "¬(B)",
+                                    "definitions": [
+                                        "A",
+                                        "B"
+                                    ],
+                                    "assumptions": [
+                                        "if(B)(A)",
+                                        "¬(A)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "ContradictionJustification",
+                                    "contradiction": "A"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "A",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+                                                "B"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(B)(A)"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "B",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(B)(A)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "¬(A)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+                                                "B"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "AssumptionJustification"
+                                        },
+                                        "dependencies": [
+
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
         }
     ],
     "version": 30
