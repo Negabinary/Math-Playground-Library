@@ -3,6 +3,7 @@
         {
             "string": "define bool\n\ndefine true : bool\ndefine false : bool\n\nassume true\nassume ¬ false\n\nassume forall b : bool. b = true or b = false",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "definition",
@@ -41,6 +42,7 @@
         {
             "string": "assume ¬ true = false\nshow ¬ false = true",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "assumption",
@@ -154,6 +156,7 @@
         {
             "string": "show forall x. if x then bool(x)\nshow forall x. if ¬ x then bool(x)",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "theorem",
@@ -169,13 +172,16 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "x"
                             ]
                         },
                         "dependencies": [
@@ -336,13 +342,16 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "x"
                             ]
                         },
                         "dependencies": [
@@ -482,6 +491,7 @@
         {
             "string": "show forall x : bool. x or ¬ x",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "theorem",
@@ -497,13 +507,16 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "x"
                             ]
                         },
                         "dependencies": [
@@ -766,6 +779,7 @@
         {
             "string": "show ¬ : bool -> bool",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "theorem",
@@ -781,13 +795,16 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "T381"
                             ]
                         },
                         "dependencies": [
@@ -1054,6 +1071,7 @@
         {
             "string": "show (true and true) = true\nshow forall x. (x and false) = false\nshow forall x. (false and x) = false\nshow forall x. (true or x) = true\nshow forall x. (x or true) = true\nshow (false or false) = false",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "theorem",
@@ -1208,13 +1226,16 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "x"
                             ]
                         },
                         "dependencies": [
@@ -1329,13 +1350,16 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "x"
                             ]
                         },
                         "dependencies": [
@@ -1450,13 +1474,16 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "x"
                             ]
                         },
                         "dependencies": [
@@ -1597,13 +1624,16 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "x"
                             ]
                         },
                         "dependencies": [
@@ -1913,6 +1943,7 @@
         {
             "string": "show forall b b' : bool. (b and b') : bool\nshow forall b b' : bool. (b or b') : bool",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "theorem",
@@ -1928,13 +1959,17 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "b",
+                                "b'"
                             ]
                         },
                         "dependencies": [
@@ -2518,13 +2553,17 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "b",
+                                "b'"
                             ]
                         },
                         "dependencies": [
@@ -3141,6 +3180,7 @@
         {
             "string": "show ¬(true = false)",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "theorem",
@@ -3236,6 +3276,424 @@
                                 },
                                 "dependencies": [
 
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "string": "show forall A : bool, B.\n\t(if A then B) = (¬ A or B)",
+            "compiled": true,
+            "title": "Implication Rule",
+            "items": [
+                {
+                    "kind": "theorem",
+                    "expr": "forall(A)(if(bool(A))(forall(B)(=(if(A)(B))(or(¬(A))(B)))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(A)(if(bool(A))(forall(B)(=(if(A)(B))(or(¬(A))(B)))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "A",
+                                "B"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "=(if(A)(B))(or(¬(A))(B))",
+                                    "definitions": [
+                                        "A",
+                                        "B"
+                                    ],
+                                    "assumptions": [
+                                        "bool(A)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "BothDirectionsJustification"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "if(if(A)(B))(or(¬(A))(B))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ImplicationJustification",
+                                            "keep_condition_ids": [
+
+                                            ],
+                                            "keep_definition_ids": [
+
+                                            ]
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "or(¬(A))(B)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "if(A)(B)"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "CaseSplitJustification",
+                                                    "disjunction": "or(A)(¬(A))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "or(¬(A))(B)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "A"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "OneOfJustification",
+                                                            "keep_ids": [
+                                                                false,
+                                                                true
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "B",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ModusPonensJustification",
+                                                                    "implication": "if(A)(B)"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "A",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "if(A)(B)",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "or(¬(A))(B)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "¬(A)"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "OneOfJustification",
+                                                            "keep_ids": [
+                                                                true,
+                                                                false
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "¬(A)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "or(A)(¬(A))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "ModusPonensJustification",
+                                                            "implication": "if(bool(A))(or(A)(¬(A)))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "bool(A)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "if(bool(A))(or(A)(¬(A)))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(x)(if(bool(x))(or(x)(¬(x))))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(x)(if(bool(x))(or(x)(¬(x))))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "if(or(¬(A))(B))(if(A)(B))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ImplicationJustification",
+                                            "keep_condition_ids": [
+                                                1
+                                            ],
+                                            "keep_definition_ids": [
+
+                                            ]
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(A)(B)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+                                                        "or(¬(A))(B)"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "CaseSplitJustification",
+                                                    "disjunction": "or(¬(A))(B)"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "if(A)(B)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "¬(A)"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "VacuousJustification"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "¬(A)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "if(A)(B)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "B"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "ImplicationJustification",
+                                                            "keep_condition_ids": [
+
+                                                            ],
+                                                            "keep_definition_ids": [
+
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "B",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "A"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "or(¬(A))(B)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
                                 ]
                             }
                         ]
