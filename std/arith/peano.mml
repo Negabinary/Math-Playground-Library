@@ -28,13 +28,367 @@
             ]
         },
         {
-            "string": "assume forall P, x : Nat. \n\tif P 0 then\n\tif forall x : Nat. if P x then P (S x) then\n\tP x",
+            "string": "assume forall P, x : Nat. \n\tif P 0 then\n\tif forall x : Nat. if P x then P (S x) then\n\tP x\n\nshow forall x : Nat. x = 0 or (exists p : Nat. S(p) = x)",
             "compiled": true,
             "title": "Induction",
             "items": [
                 {
                     "kind": "assumption",
                     "expr": "forall(P)(forall(x)(if(Nat(x))(if(P(0))(if(forall(x)(if(Nat(x))(if(P(x))(P(S(x))))))(P(x))))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(x)(if(Nat(x))(or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(x)(if(Nat(x))(or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "x"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x))))",
+                                    "definitions": [
+                                        "x"
+                                    ],
+                                    "assumptions": [
+                                        "Nat(x)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EliminatedLambdaJustification",
+                                    "location_expr_item": "or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x))))",
+                                    "location_indeces": [
+
+                                    ],
+                                    "replace_value": "x",
+                                    "replace_with": "x'",
+                                    "replace_positions": [
+                                        true,
+                                        true
+                                    ]
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(x)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(Nat(x))(if(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(0))(if(forall(x)(if(Nat(x))(if(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(x))(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(S(x))))))(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(x))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "Nat(x)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(0)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(0)",
+                                                    "location_indeces": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "or(=(0)(0))(exists(p)(and(Nat(p))(=(S(p))(0))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "OneOfJustification",
+                                                            "keep_ids": [
+                                                                true,
+                                                                false
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(0)(0)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ReflexiveJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(x)(if(Nat(x))(if(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(x))(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(S(x)))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "forall(x)(if(Nat(x))(if(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(x))(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(S(x)))))",
+                                                    "location_indeces": [
+                                                        1,
+                                                        1,
+                                                        0
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(Nat(x))(if(or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x)))))(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(S(x)))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "IntroducedLambdaJustification",
+                                                            "location_expr_item": "forall(x)(if(Nat(x))(if(or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x)))))(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(S(x)))))",
+                                                            "location_indeces": [
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(if(Nat(x))(if(or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x)))))(or(=(S(x))(0))(exists(p)(and(Nat(p))(=(S(p))(S(x))))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 2,
+                                                                    "justification_type": "ImplicationJustification",
+                                                                    "keep_condition_ids": [
+
+                                                                    ],
+                                                                    "keep_definition_ids": [
+
+                                                                    ],
+                                                                    "definition_identifier_names": [
+                                                                        "x"
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "or(=(S(x))(0))(exists(p)(and(Nat(p))(=(S(p))(S(x)))))",
+                                                                            "definitions": [
+                                                                                "x"
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "Nat(x)",
+                                                                                "or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x))))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "OneOfJustification",
+                                                                            "keep_ids": [
+                                                                                false,
+                                                                                true
+                                                                            ]
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "exists(p)(and(Nat(p))(=(S(p))(S(x))))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "WitnessJustification",
+                                                                                    "witness": "x"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "and(Nat(x))(=(S(x))(S(x)))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "CombineJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "Nat(x)",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "=(S(x))(S(x))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ReflexiveJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(Nat(x))(if(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(0))(if(forall(x)(if(Nat(x))(if(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(x))(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(S(x))))))(lambda(x')(or(=(x')(0))(exists(p)(and(Nat(p))(=(S(p))(x')))))(x))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(P)(forall(x)(if(Nat(x))(if(P(0))(if(forall(x)(if(Nat(x))(if(P(x))(P(S(x))))))(P(x))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(P)(forall(x)(if(Nat(x))(if(P(0))(if(forall(x)(if(Nat(x))(if(P(x))(P(S(x))))))(P(x))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -80,10 +434,10 @@
                             "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
-
+                                1
                             ],
                             "keep_definition_ids": [
-
+                                1
                             ],
                             "definition_identifier_names": [
                                 "m",
@@ -93,25 +447,24 @@
                         "dependencies": [
                             {
                                 "requirement": {
-                                    "goal": "bool(=(m)(n))",
+                                    "goal": "forall(n)(if(Nat(n))(bool(=(m)(n))))",
                                     "definitions": [
                                         "m",
                                         "n"
                                     ],
                                     "assumptions": [
-                                        "Nat(m)",
-                                        "Nat(n)"
+                                        "Nat(m)"
                                     ]
                                 },
                                 "justification": {
                                     "justification_version": 1,
                                     "justification_type": "EliminatedLambdaJustification",
-                                    "location_expr_item": "bool(=(m)(n))",
+                                    "location_expr_item": "forall(n)(if(Nat(n))(bool(=(m)(n))))",
                                     "location_indeces": [
 
                                     ],
-                                    "replace_value": "n",
-                                    "replace_with": "n'",
+                                    "replace_value": "m",
+                                    "replace_with": "m'",
                                     "replace_positions": [
                                         true
                                     ]
@@ -119,7 +472,7 @@
                                 "dependencies": [
                                     {
                                         "requirement": {
-                                            "goal": "lambda(n')(bool(=(m)(n')))(n)",
+                                            "goal": "lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(m)",
                                             "definitions": [
 
                                             ],
@@ -130,12 +483,12 @@
                                         "justification": {
                                             "justification_version": 1,
                                             "justification_type": "ModusPonensJustification",
-                                            "implication": "if(Nat(n))(if(lambda(n')(bool(=(m)(n')))(0))(if(forall(x)(if(Nat(x))(if(lambda(n')(bool(=(m)(n')))(x))(lambda(n')(bool(=(m)(n')))(S(x))))))(lambda(n')(bool(=(m)(n')))(n))))"
+                                            "implication": "if(Nat(m))(if(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(0))(if(forall(x)(if(Nat(x))(if(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(x))(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(S(x))))))(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(m))))"
                                         },
                                         "dependencies": [
                                             {
                                                 "requirement": {
-                                                    "goal": "Nat(n)",
+                                                    "goal": "Nat(m)",
                                                     "definitions": [
 
                                                     ],
@@ -153,7 +506,7 @@
                                             },
                                             {
                                                 "requirement": {
-                                                    "goal": "lambda(n')(bool(=(m)(n')))(0)",
+                                                    "goal": "lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(0)",
                                                     "definitions": [
 
                                                     ],
@@ -164,7 +517,7 @@
                                                 "justification": {
                                                     "justification_version": 1,
                                                     "justification_type": "IntroducedLambdaJustification",
-                                                    "location_expr_item": "lambda(n')(bool(=(m)(n')))(0)",
+                                                    "location_expr_item": "lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(0)",
                                                     "location_indeces": [
 
                                                     ]
@@ -172,7 +525,7 @@
                                                 "dependencies": [
                                                     {
                                                         "requirement": {
-                                                            "goal": "bool(=(m)(0))",
+                                                            "goal": "forall(n)(if(Nat(n))(bool(=(0)(n))))",
                                                             "definitions": [
 
                                                             ],
@@ -181,70 +534,55 @@
                                                             ]
                                                         },
                                                         "justification": {
-                                                            "justification_version": 1,
-                                                            "justification_type": "EliminatedLambdaJustification",
-                                                            "location_expr_item": "bool(=(m)(0))",
-                                                            "location_indeces": [
+                                                            "justification_version": 2,
+                                                            "justification_type": "ImplicationJustification",
+                                                            "keep_condition_ids": [
 
                                                             ],
-                                                            "replace_value": "m",
-                                                            "replace_with": "m'",
-                                                            "replace_positions": [
-                                                                true
+                                                            "keep_definition_ids": [
+
+                                                            ],
+                                                            "definition_identifier_names": [
+                                                                "n"
                                                             ]
                                                         },
                                                         "dependencies": [
                                                             {
                                                                 "requirement": {
-                                                                    "goal": "lambda(m')(bool(=(m')(0)))(m)",
+                                                                    "goal": "bool(=(0)(n))",
                                                                     "definitions": [
-
+                                                                        "n"
                                                                     ],
                                                                     "assumptions": [
-
+                                                                        "Nat(n)"
                                                                     ]
                                                                 },
                                                                 "justification": {
                                                                     "justification_version": 1,
-                                                                    "justification_type": "ModusPonensJustification",
-                                                                    "implication": "if(Nat(m))(if(lambda(m')(bool(=(m')(0)))(0))(if(forall(x)(if(Nat(x))(if(lambda(m')(bool(=(m')(0)))(x))(lambda(m')(bool(=(m')(0)))(S(x))))))(lambda(m')(bool(=(m')(0)))(m))))"
+                                                                    "justification_type": "CaseSplitJustification",
+                                                                    "disjunction": "or(=(n)(0))(exists(p)(and(Nat(p))(=(S(p))(n))))"
                                                                 },
                                                                 "dependencies": [
                                                                     {
                                                                         "requirement": {
-                                                                            "goal": "Nat(m)",
+                                                                            "goal": "bool(=(0)(n))",
                                                                             "definitions": [
 
                                                                             ],
                                                                             "assumptions": [
-
+                                                                                "=(n)(0)"
                                                                             ]
                                                                         },
                                                                         "justification": {
                                                                             "justification_version": 1,
-                                                                            "justification_type": "AssumptionJustification"
-                                                                        },
-                                                                        "dependencies": [
-
-                                                                        ]
-                                                                    },
-                                                                    {
-                                                                        "requirement": {
-                                                                            "goal": "lambda(m')(bool(=(m')(0)))(0)",
-                                                                            "definitions": [
-
-                                                                            ],
-                                                                            "assumptions": [
-
-                                                                            ]
-                                                                        },
-                                                                        "justification": {
-                                                                            "justification_version": 1,
-                                                                            "justification_type": "IntroducedLambdaJustification",
-                                                                            "location_expr_item": "lambda(m')(bool(=(m')(0)))(0)",
+                                                                            "justification_type": "EqualityJustification",
+                                                                            "location_expr_item": "bool(=(0)(n))",
                                                                             "location_indeces": [
-
-                                                                            ]
+                                                                                0,
+                                                                                1
+                                                                            ],
+                                                                            "replace_with": "0",
+                                                                            "forwards": false
                                                                         },
                                                                         "dependencies": [
                                                                             {
@@ -318,33 +656,10 @@
                                                                                         ]
                                                                                     }
                                                                                 ]
-                                                                            }
-                                                                        ]
-                                                                    },
-                                                                    {
-                                                                        "requirement": {
-                                                                            "goal": "forall(x)(if(Nat(x))(if(lambda(m')(bool(=(m')(0)))(x))(lambda(m')(bool(=(m')(0)))(S(x)))))",
-                                                                            "definitions": [
-
-                                                                            ],
-                                                                            "assumptions": [
-
-                                                                            ]
-                                                                        },
-                                                                        "justification": {
-                                                                            "justification_version": 1,
-                                                                            "justification_type": "IntroducedLambdaJustification",
-                                                                            "location_expr_item": "forall(x)(if(Nat(x))(if(lambda(m')(bool(=(m')(0)))(x))(lambda(m')(bool(=(m')(0)))(S(x)))))",
-                                                                            "location_indeces": [
-                                                                                1,
-                                                                                1,
-                                                                                0
-                                                                            ]
-                                                                        },
-                                                                        "dependencies": [
+                                                                            },
                                                                             {
                                                                                 "requirement": {
-                                                                                    "goal": "forall(x)(if(Nat(x))(if(bool(=(x)(0)))(lambda(m')(bool(=(m')(0)))(S(x)))))",
+                                                                                    "goal": "=(n)(0)",
                                                                                     "definitions": [
 
                                                                                     ],
@@ -354,18 +669,57 @@
                                                                                 },
                                                                                 "justification": {
                                                                                     "justification_version": 1,
-                                                                                    "justification_type": "IntroducedLambdaJustification",
-                                                                                    "location_expr_item": "forall(x)(if(Nat(x))(if(bool(=(x)(0)))(lambda(m')(bool(=(m')(0)))(S(x)))))",
-                                                                                    "location_indeces": [
-                                                                                        1,
-                                                                                        1,
-                                                                                        1
+                                                                                    "justification_type": "AssumptionJustification"
+                                                                                },
+                                                                                "dependencies": [
+
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "bool(=(0)(n))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "exists(p)(and(Nat(p))(=(S(p))(n)))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "InstantiateJustification",
+                                                                            "new_type": "p",
+                                                                            "existential": "exists(p)(and(Nat(p))(=(S(p))(n)))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "bool(=(0)(n))",
+                                                                                    "definitions": [
+                                                                                        "p"
+                                                                                    ],
+                                                                                    "assumptions": [
+                                                                                        "Nat(p)",
+                                                                                        "=(S(p))(n)"
                                                                                     ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "EqualityJustification",
+                                                                                    "location_expr_item": "bool(=(0)(n))",
+                                                                                    "location_indeces": [
+                                                                                        0,
+                                                                                        1
+                                                                                    ],
+                                                                                    "replace_with": "S(p)",
+                                                                                    "forwards": true
                                                                                 },
                                                                                 "dependencies": [
                                                                                     {
                                                                                         "requirement": {
-                                                                                            "goal": "forall(x)(if(Nat(x))(if(bool(=(x)(0)))(bool(=(S(x))(0)))))",
+                                                                                            "goal": "bool(=(0)(S(p)))",
                                                                                             "definitions": [
 
                                                                                             ],
@@ -374,55 +728,105 @@
                                                                                             ]
                                                                                         },
                                                                                         "justification": {
-                                                                                            "justification_version": 2,
-                                                                                            "justification_type": "ImplicationJustification",
-                                                                                            "keep_condition_ids": [
-
-                                                                                            ],
-                                                                                            "keep_definition_ids": [
-
-                                                                                            ],
-                                                                                            "definition_identifier_names": [
-                                                                                                "x"
-                                                                                            ]
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(¬(=(0)(S(p))))(bool(=(0)(S(p))))"
                                                                                         },
                                                                                         "dependencies": [
                                                                                             {
                                                                                                 "requirement": {
-                                                                                                    "goal": "bool(=(S(x))(0))",
+                                                                                                    "goal": "¬(=(0)(S(p)))",
                                                                                                     "definitions": [
-                                                                                                        "x"
+
                                                                                                     ],
                                                                                                     "assumptions": [
-                                                                                                        "Nat(x)",
-                                                                                                        "bool(=(x)(0))"
+
                                                                                                     ]
                                                                                                 },
                                                                                                 "justification": {
                                                                                                     "justification_version": 1,
-                                                                                                    "justification_type": "ModusPonensJustification",
-                                                                                                    "implication": "if(¬(=(S(x))(0)))(bool(=(S(x))(0)))"
+                                                                                                    "justification_type": "ContradictionJustification",
+                                                                                                    "contradiction": "=(S(p))(0)"
                                                                                                 },
                                                                                                 "dependencies": [
                                                                                                     {
                                                                                                         "requirement": {
-                                                                                                            "goal": "¬(=(S(x))(0))",
+                                                                                                            "goal": "=(S(p))(0)",
                                                                                                             "definitions": [
 
                                                                                                             ],
                                                                                                             "assumptions": [
+                                                                                                                "=(0)(S(p))"
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "EqualityJustification",
+                                                                                                            "location_expr_item": "=(S(p))(0)",
+                                                                                                            "location_indeces": [
+                                                                                                                0
+                                                                                                            ],
+                                                                                                            "replace_with": "0",
+                                                                                                            "forwards": true
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "=(0)(0)",
+                                                                                                                    "definitions": [
 
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "ReflexiveJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "=(0)(S(p))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "¬(=(S(p))(0))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+                                                                                                                "=(0)(S(p))"
                                                                                                             ]
                                                                                                         },
                                                                                                         "justification": {
                                                                                                             "justification_version": 1,
                                                                                                             "justification_type": "ModusPonensJustification",
-                                                                                                            "implication": "if(Nat(x))(¬(=(S(x))(0)))"
+                                                                                                            "implication": "if(Nat(p))(¬(=(S(p))(0)))"
                                                                                                         },
                                                                                                         "dependencies": [
                                                                                                             {
                                                                                                                 "requirement": {
-                                                                                                                    "goal": "Nat(x)",
+                                                                                                                    "goal": "Nat(p)",
                                                                                                                     "definitions": [
 
                                                                                                                     ],
@@ -440,7 +844,7 @@
                                                                                                             },
                                                                                                             {
                                                                                                                 "requirement": {
-                                                                                                                    "goal": "if(Nat(x))(¬(=(S(x))(0)))",
+                                                                                                                    "goal": "if(Nat(p))(¬(=(S(p))(0)))",
                                                                                                                     "definitions": [
 
                                                                                                                     ],
@@ -475,10 +879,326 @@
                                                                                                                 ]
                                                                                                             }
                                                                                                         ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(¬(=(0)(S(p))))(bool(=(0)(S(p))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(x)(if(¬(x))(bool(x)))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(x)(if(¬(x))(bool(x)))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "=(S(p))(n)",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "exists(p)(and(Nat(p))(=(S(p))(n)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "AssumptionJustification"
+                                                                                },
+                                                                                "dependencies": [
+
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "or(=(n)(0))(exists(p)(and(Nat(p))(=(S(p))(n))))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "ModusPonensJustification",
+                                                                            "implication": "if(Nat(n))(or(=(n)(0))(exists(p)(and(Nat(p))(=(S(p))(n)))))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "Nat(n)",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "AssumptionJustification"
+                                                                                },
+                                                                                "dependencies": [
+
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "if(Nat(n))(or(=(n)(0))(exists(p)(and(Nat(p))(=(S(p))(n)))))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "RefineJustification",
+                                                                                    "general": "forall(x)(if(Nat(x))(or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x))))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "forall(x)(if(Nat(x))(or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x))))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(x)(if(Nat(x))(if(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(x))(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(S(x)))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "forall(x)(if(Nat(x))(if(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(x))(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(S(x)))))",
+                                                    "location_indeces": [
+                                                        1,
+                                                        1,
+                                                        0
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(Nat(x))(if(forall(n)(if(Nat(n))(bool(=(x)(n)))))(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(S(x)))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "IntroducedLambdaJustification",
+                                                            "location_expr_item": "forall(x)(if(Nat(x))(if(forall(n)(if(Nat(n))(bool(=(x)(n)))))(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(S(x)))))",
+                                                            "location_indeces": [
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(if(Nat(x))(if(forall(n)(if(Nat(n))(bool(=(x)(n)))))(forall(n)(if(Nat(n))(bool(=(S(x))(n)))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 2,
+                                                                    "justification_type": "ImplicationJustification",
+                                                                    "keep_condition_ids": [
+
+                                                                    ],
+                                                                    "keep_definition_ids": [
+
+                                                                    ],
+                                                                    "definition_identifier_names": [
+                                                                        "x",
+                                                                        "n"
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "bool(=(S(x))(n))",
+                                                                            "definitions": [
+                                                                                "x",
+                                                                                "n"
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "Nat(x)",
+                                                                                "forall(n)(if(Nat(n))(bool(=(x)(n))))",
+                                                                                "Nat(n)"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "CaseSplitJustification",
+                                                                            "disjunction": "or(=(n)(0))(exists(p)(and(Nat(p))(=(S(p))(n))))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "bool(=(S(x))(n))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+                                                                                        "=(n)(0)"
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "EqualityJustification",
+                                                                                    "location_expr_item": "bool(=(S(x))(n))",
+                                                                                    "location_indeces": [
+                                                                                        0,
+                                                                                        1
+                                                                                    ],
+                                                                                    "replace_with": "0",
+                                                                                    "forwards": false
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "bool(=(S(x))(0))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(¬(=(S(x))(0)))(bool(=(S(x))(0)))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "¬(=(S(x))(0))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                                    "implication": "if(Nat(x))(¬(=(S(x))(0)))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "Nat(x)",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
                                                                                                     },
                                                                                                     {
                                                                                                         "requirement": {
-                                                                                                            "goal": "if(¬(=(S(x))(0)))(bool(=(S(x))(0)))",
+                                                                                                            "goal": "if(Nat(x))(¬(=(S(x))(0)))",
                                                                                                             "definitions": [
 
                                                                                                             ],
@@ -489,12 +1209,12 @@
                                                                                                         "justification": {
                                                                                                             "justification_version": 1,
                                                                                                             "justification_type": "RefineJustification",
-                                                                                                            "general": "forall(x)(if(¬(x))(bool(x)))"
+                                                                                                            "general": "forall(m)(if(Nat(m))(¬(=(S(m))(0))))"
                                                                                                         },
                                                                                                         "dependencies": [
                                                                                                             {
                                                                                                                 "requirement": {
-                                                                                                                    "goal": "forall(x)(if(¬(x))(bool(x)))",
+                                                                                                                    "goal": "forall(m)(if(Nat(m))(¬(=(S(m))(0))))",
                                                                                                                     "definitions": [
 
                                                                                                                     ],
@@ -513,32 +1233,333 @@
                                                                                                         ]
                                                                                                     }
                                                                                                 ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(¬(=(S(x))(0)))(bool(=(S(x))(0)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(x)(if(¬(x))(bool(x)))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(x)(if(¬(x))(bool(x)))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
                                                                                             }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "=(n)(0)",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
                                                                                         ]
                                                                                     }
                                                                                 ]
-                                                                            }
-                                                                        ]
-                                                                    },
-                                                                    {
-                                                                        "requirement": {
-                                                                            "goal": "if(Nat(m))(if(lambda(m')(bool(=(m')(0)))(0))(if(forall(x)(if(Nat(x))(if(lambda(m')(bool(=(m')(0)))(x))(lambda(m')(bool(=(m')(0)))(S(x))))))(lambda(m')(bool(=(m')(0)))(m))))",
-                                                                            "definitions": [
-
-                                                                            ],
-                                                                            "assumptions": [
-
-                                                                            ]
-                                                                        },
-                                                                        "justification": {
-                                                                            "justification_version": 1,
-                                                                            "justification_type": "RefineJustification",
-                                                                            "general": "forall(P)(forall(x)(if(Nat(x))(if(P(0))(if(forall(x)(if(Nat(x))(if(P(x))(P(S(x))))))(P(x))))))"
-                                                                        },
-                                                                        "dependencies": [
+                                                                            },
                                                                             {
                                                                                 "requirement": {
-                                                                                    "goal": "forall(P)(forall(x)(if(Nat(x))(if(P(0))(if(forall(x)(if(Nat(x))(if(P(x))(P(S(x))))))(P(x))))))",
+                                                                                    "goal": "bool(=(S(x))(n))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+                                                                                        "exists(p)(and(Nat(p))(=(S(p))(n)))"
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "InstantiateJustification",
+                                                                                    "new_type": "p",
+                                                                                    "existential": "exists(p)(and(Nat(p))(=(S(p))(n)))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "bool(=(S(x))(n))",
+                                                                                            "definitions": [
+                                                                                                "p"
+                                                                                            ],
+                                                                                            "assumptions": [
+                                                                                                "Nat(p)",
+                                                                                                "=(S(p))(n)"
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "EqualityJustification",
+                                                                                            "location_expr_item": "bool(=(S(x))(n))",
+                                                                                            "location_indeces": [
+                                                                                                0,
+                                                                                                1
+                                                                                            ],
+                                                                                            "replace_with": "S(p)",
+                                                                                            "forwards": true
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "bool(=(S(x))(S(p)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "EqualityJustification",
+                                                                                                    "location_expr_item": "bool(=(S(x))(S(p)))",
+                                                                                                    "location_indeces": [
+                                                                                                        0
+                                                                                                    ],
+                                                                                                    "replace_with": "=(x)(p)",
+                                                                                                    "forwards": true
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "bool(=(x)(p))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                                            "implication": "if(Nat(p))(bool(=(x)(p)))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "Nat(p)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "if(Nat(p))(bool(=(x)(p)))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(n)(if(Nat(n))(bool(=(x)(n))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(n)(if(Nat(n))(bool(=(x)(n))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "=(=(x)(p))(=(S(x))(S(p)))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                                            "implication": "if(Nat(x))(if(Nat(p))(=(=(x)(p))(=(S(x))(S(p)))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "Nat(x)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "Nat(p)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "if(Nat(x))(if(Nat(p))(=(=(x)(p))(=(S(x))(S(p)))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(m)(if(Nat(m))(forall(n)(if(Nat(n))(=(=(m)(n))(=(S(m))(S(n)))))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(m)(if(Nat(m))(forall(n)(if(Nat(n))(=(=(m)(n))(=(S(m))(S(n)))))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "=(S(p))(n)",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "exists(p)(and(Nat(p))(=(S(p))(n)))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "or(=(n)(0))(exists(p)(and(Nat(p))(=(S(p))(n))))",
                                                                                     "definitions": [
 
                                                                                     ],
@@ -548,10 +1569,64 @@
                                                                                 },
                                                                                 "justification": {
                                                                                     "justification_version": 1,
-                                                                                    "justification_type": "AssumptionJustification"
+                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                    "implication": "if(Nat(n))(or(=(n)(0))(exists(p)(and(Nat(p))(=(S(p))(n)))))"
                                                                                 },
                                                                                 "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "Nat(n)",
+                                                                                            "definitions": [
 
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "if(Nat(n))(or(=(n)(0))(exists(p)(and(Nat(p))(=(S(p))(n)))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(x)(if(Nat(x))(or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x))))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(x)(if(Nat(x))(or(=(x)(0))(exists(p)(and(Nat(p))(=(S(p))(x))))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
                                                                                 ]
                                                                             }
                                                                         ]
@@ -564,25 +1639,7 @@
                                             },
                                             {
                                                 "requirement": {
-                                                    "goal": "forall(x)(if(Nat(x))(if(lambda(n')(bool(=(m)(n')))(x))(lambda(n')(bool(=(m)(n')))(S(x)))))",
-                                                    "definitions": [
-
-                                                    ],
-                                                    "assumptions": [
-
-                                                    ]
-                                                },
-                                                "justification": {
-                                                    "justification_version": 1,
-                                                    "justification_type": "MissingJustification"
-                                                },
-                                                "dependencies": [
-
-                                                ]
-                                            },
-                                            {
-                                                "requirement": {
-                                                    "goal": "if(Nat(n))(if(lambda(n')(bool(=(m)(n')))(0))(if(forall(x)(if(Nat(x))(if(lambda(n')(bool(=(m)(n')))(x))(lambda(n')(bool(=(m)(n')))(S(x))))))(lambda(n')(bool(=(m)(n')))(n))))",
+                                                    "goal": "if(Nat(m))(if(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(0))(if(forall(x)(if(Nat(x))(if(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(x))(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(S(x))))))(lambda(m')(forall(n)(if(Nat(n))(bool(=(m')(n)))))(m))))",
                                                     "definitions": [
 
                                                     ],
