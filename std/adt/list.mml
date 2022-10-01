@@ -3,6 +3,7 @@
         {
             "string": "define List\ndefine [] : forall T. List T\ndefine Cons : forall T. T -> List T -> List T\nassume forall T, l : List T. l = [] or (exists x : T, xs : List T. l = Cons x xs)\nassume forall T, l : List T, P.\n\tif P [] then\n\tif forall x : T, xs : List T. if P xs then P (Cons x xs) then\n\tP l",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "definition",
@@ -37,6 +38,7 @@
         {
             "string": "assume forall T. forall x y:T, xs ys:List T.\n\tif Cons x xs = Cons y ys then\n\t\tx = y and xs = ys",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "assumption",
@@ -47,6 +49,7 @@
         {
             "string": "import std.arith.peano\n\ndefine len\n\nassume len [] = 0\nassume forall T. forall x:T, xs:List T.\n\tlen (Cons x xs) = S(len xs)\n\nshow len : forall T. List T -> Nat",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "import",
@@ -79,13 +82,17 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "T",
+                                "T350"
                             ]
                         },
                         "dependencies": [
@@ -285,13 +292,17 @@
                                                                     ]
                                                                 },
                                                                 "justification": {
-                                                                    "justification_version": 1,
+                                                                    "justification_version": 2,
                                                                     "justification_type": "ImplicationJustification",
                                                                     "keep_condition_ids": [
 
                                                                     ],
                                                                     "keep_definition_ids": [
 
+                                                                    ],
+                                                                    "definition_identifier_names": [
+                                                                        "x",
+                                                                        "xs"
                                                                     ]
                                                                 },
                                                                 "dependencies": [
@@ -571,8 +582,9 @@
             ]
         },
         {
-            "string": "define list_contains\n\nassume forall x. ¬(list_contains [] x)\nassume forall x y ys. list_contains (Cons y ys) x = (x = y or list_contains ys x)",
+            "string": "define list_contains\n\nassume forall x. ¬(list_contains [] x)\nassume forall x y ys. list_contains (Cons y ys) x = (x = y or list_contains ys x)\n\nshow forall T, l : List T. List (list_contains l) l",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "definition",
@@ -585,12 +597,777 @@
                 {
                     "kind": "assumption",
                     "expr": "forall(x)(forall(y)(forall(ys)(=(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(T)(forall(l)(if(List(T)(l))(List(list_contains(l))(l))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(T)(forall(l)(if(List(T)(l))(List(list_contains(l))(l))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "T",
+                                "l"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "List(list_contains(l))(l)",
+                                    "definitions": [
+                                        "T",
+                                        "l"
+                                    ],
+                                    "assumptions": [
+                                        "List(T)(l)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EliminatedLambdaJustification",
+                                    "location_expr_item": "List(list_contains(l))(l)",
+                                    "location_indeces": [
+
+                                    ],
+                                    "replace_value": "l",
+                                    "replace_with": "l'",
+                                    "replace_positions": [
+                                        true,
+                                        true
+                                    ]
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "lambda(l')(List(list_contains(l'))(l'))(l)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(List(T)(l))(if(lambda(l')(List(list_contains(l'))(l'))([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(List(list_contains(l'))(l'))(xs))(lambda(l')(List(list_contains(l'))(l'))(Cons(x)(xs))))))))(lambda(l')(List(list_contains(l'))(l'))(l))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "List(T)(l)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "lambda(l')(List(list_contains(l'))(l'))([])",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "lambda(l')(List(list_contains(l'))(l'))([])",
+                                                    "location_indeces": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "List(list_contains([]))([])",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T)(List(T)([]))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T)(List(T)([]))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(List(list_contains(l'))(l'))(xs))(lambda(l')(List(list_contains(l'))(l'))(Cons(x)(xs)))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(List(list_contains(l'))(l'))(xs))(lambda(l')(List(list_contains(l'))(l'))(Cons(x)(xs)))))))",
+                                                    "location_indeces": [
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        0
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(List(list_contains(xs))(xs))(lambda(l')(List(list_contains(l'))(l'))(Cons(x)(xs)))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "IntroducedLambdaJustification",
+                                                            "location_expr_item": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(List(list_contains(xs))(xs))(lambda(l')(List(list_contains(l'))(l'))(Cons(x)(xs)))))))",
+                                                            "location_indeces": [
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(List(list_contains(xs))(xs))(List(list_contains(Cons(x)(xs)))(Cons(x)(xs)))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 2,
+                                                                    "justification_type": "ImplicationJustification",
+                                                                    "keep_condition_ids": [
+
+                                                                    ],
+                                                                    "keep_definition_ids": [
+
+                                                                    ],
+                                                                    "definition_identifier_names": [
+                                                                        "x",
+                                                                        "xs"
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "List(list_contains(Cons(x)(xs)))(Cons(x)(xs))",
+                                                                            "definitions": [
+                                                                                "x",
+                                                                                "xs"
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "T(x)",
+                                                                                "List(T)(xs)",
+                                                                                "List(list_contains(xs))(xs)"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "ModusPonensJustification",
+                                                                            "implication": "if(list_contains(Cons(x)(xs))(x))(if(List(list_contains(Cons(x)(xs)))(xs))(List(list_contains(Cons(x)(xs)))(Cons(x)(xs))))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "list_contains(Cons(x)(xs))(x)",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "EqualityJustification",
+                                                                                    "location_expr_item": "list_contains(Cons(x)(xs))(x)",
+                                                                                    "location_indeces": [
+
+                                                                                    ],
+                                                                                    "replace_with": "or(=(x)(x))(list_contains(xs)(x))",
+                                                                                    "forwards": false
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "or(=(x)(x))(list_contains(xs)(x))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "OneOfJustification",
+                                                                                            "keep_ids": [
+                                                                                                true,
+                                                                                                false
+                                                                                            ]
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "=(x)(x)",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ReflexiveJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "=(list_contains(Cons(x)(xs))(x))(or(=(x)(x))(list_contains(xs)(x)))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(x)(forall(y)(forall(ys)(=(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(x)(forall(y)(forall(ys)(=(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "List(list_contains(Cons(x)(xs)))(xs)",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                    "implication": "if(List(list_contains(xs))(xs))(if(List(list_contains(Cons(x)(xs)))([]))(if(forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(List(list_contains(Cons(.x)(.xs)))(xs))(List(list_contains(Cons(.x)(.xs)))(Cons(x)(xs))))))))(List(list_contains(Cons(x)(xs)))(xs))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "List(list_contains(xs))(xs)",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "List(list_contains(Cons(x)(xs)))([])",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(T)(List(T)([]))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(T)(List(T)([]))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(List(list_contains(Cons(.x)(.xs)))(xs))(List(list_contains(Cons(.x)(.xs)))(Cons(x)(xs)))))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 2,
+                                                                                            "justification_type": "ImplicationJustification",
+                                                                                            "keep_condition_ids": [
+
+                                                                                            ],
+                                                                                            "keep_definition_ids": [
+
+                                                                                            ],
+                                                                                            "definition_identifier_names": [
+                                                                                                "y",
+                                                                                                "ys"
+                                                                                            ]
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "List(list_contains(Cons(x)(xs)))(Cons(y)(ys))",
+                                                                                                    "definitions": [
+                                                                                                        "y",
+                                                                                                        "ys"
+                                                                                                    ],
+                                                                                                    "assumptions": [
+                                                                                                        "list_contains(xs)(y)",
+                                                                                                        "List(list_contains(xs))(ys)",
+                                                                                                        "List(list_contains(Cons(x)(xs)))(ys)"
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                                    "implication": "if(list_contains(Cons(x)(xs))(y))(if(List(list_contains(Cons(x)(xs)))(ys))(List(list_contains(Cons(x)(xs)))(Cons(y)(ys))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "list_contains(Cons(x)(xs))(y)",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "EqualityJustification",
+                                                                                                            "location_expr_item": "list_contains(Cons(x)(xs))(y)",
+                                                                                                            "location_indeces": [
+
+                                                                                                            ],
+                                                                                                            "replace_with": "or(=(y)(x))(list_contains(xs)(y))",
+                                                                                                            "forwards": false
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "or(=(y)(x))(list_contains(xs)(y))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "OneOfJustification",
+                                                                                                                    "keep_ids": [
+                                                                                                                        false,
+                                                                                                                        true
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "list_contains(xs)(y)",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "=(list_contains(Cons(x)(xs))(y))(or(=(y)(x))(list_contains(xs)(y)))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(x)(forall(y)(forall(ys)(=(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(x)(forall(y)(forall(ys)(=(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "List(list_contains(Cons(x)(xs)))(ys)",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "if(list_contains(Cons(x)(xs))(y))(if(List(list_contains(Cons(x)(xs)))(ys))(List(list_contains(Cons(x)(xs)))(Cons(y)(ys))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "RefineJustification",
+                                                                                                            "general": "forall(T)(forall(T215)(if(T(T215))(forall(T428)(if(List(T)(T428))(List(T)(Cons(T215)(T428)))))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "forall(T)(forall(T215)(if(T(T215))(forall(T428)(if(List(T)(T428))(List(T)(Cons(T215)(T428)))))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "if(List(list_contains(xs))(xs))(if(List(list_contains(Cons(x)(xs)))([]))(if(forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(List(list_contains(Cons(.x)(.xs)))(xs))(List(list_contains(Cons(.x)(.xs)))(Cons(x)(xs))))))))(List(list_contains(Cons(x)(xs)))(xs))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(l)(forall(P)(if(List(list_contains(xs))(l))(if(P([]))(if(forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(l)(forall(P)(if(List(list_contains(xs))(l))(if(P([]))(if(forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "if(list_contains(Cons(x)(xs))(x))(if(List(list_contains(Cons(x)(xs)))(xs))(List(list_contains(Cons(x)(xs)))(Cons(x)(xs))))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "RefineJustification",
+                                                                                    "general": "forall(T)(forall(T215)(if(T(T215))(forall(T428)(if(List(T)(T428))(List(T)(Cons(T215)(T428)))))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "forall(T)(forall(T215)(if(T(T215))(forall(T428)(if(List(T)(T428))(List(T)(Cons(T215)(T428)))))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(List(T)(l))(if(lambda(l')(List(list_contains(l'))(l'))([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(l')(List(list_contains(l'))(l'))(xs))(lambda(l')(List(list_contains(l'))(l'))(Cons(x)(xs))))))))(lambda(l')(List(list_contains(l'))(l'))(l))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(l)(forall(P)(if(List(T)(l))(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(l)(forall(P)(if(List(T)(l))(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         },
         {
             "string": "define no_duplicates\n\nassume no_duplicates []\nassume forall x xs. no_duplicates (Cons x xs) = (¬ (list_contains xs x) and no_duplicates xs)",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "definition",
@@ -609,6 +1386,7 @@
         {
             "string": "define map\nassume forall f. map f [] = []\nassume forall f x xs. map f (Cons x xs) = Cons (f x) (map f xs)\nshow forall P Q, f : P -> Q, l : List P. map f l : List Q",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "definition",
@@ -636,13 +1414,19 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "P",
+                                "Q",
+                                "f",
+                                "l"
                             ]
                         },
                         "dependencies": [
@@ -881,13 +1665,17 @@
                                                                     ]
                                                                 },
                                                                 "justification": {
-                                                                    "justification_version": 1,
+                                                                    "justification_version": 2,
                                                                     "justification_type": "ImplicationJustification",
                                                                     "keep_condition_ids": [
 
                                                                     ],
                                                                     "keep_definition_ids": [
 
+                                                                    ],
+                                                                    "definition_identifier_names": [
+                                                                        "x",
+                                                                        "xs"
                                                                     ]
                                                                 },
                                                                 "dependencies": [
@@ -1169,6 +1957,7 @@
         {
             "string": "import std.bool\n\ndefine count\nassume forall p. count p [] = 0\nassume forall p x xs. if p x then count p (Cons x xs) = S (count p xs)\nassume forall p x xs. if ¬ (p x) then count p (Cons x xs) = (count p xs)\nshow count : forall T. (T -> bool) -> List T -> Nat",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "import",
@@ -1205,13 +1994,18 @@
                             ]
                         },
                         "justification": {
-                            "justification_version": 1,
+                            "justification_version": 2,
                             "justification_type": "ImplicationJustification",
                             "keep_condition_ids": [
 
                             ],
                             "keep_definition_ids": [
 
+                            ],
+                            "definition_identifier_names": [
+                                "T",
+                                "T376",
+                                "T293"
                             ]
                         },
                         "dependencies": [
@@ -1431,13 +2225,17 @@
                                                                     ]
                                                                 },
                                                                 "justification": {
-                                                                    "justification_version": 1,
+                                                                    "justification_version": 2,
                                                                     "justification_type": "ImplicationJustification",
                                                                     "keep_condition_ids": [
 
                                                                     ],
                                                                     "keep_definition_ids": [
 
+                                                                    ],
+                                                                    "definition_identifier_names": [
+                                                                        "x",
+                                                                        "xs"
                                                                     ]
                                                                 },
                                                                 "dependencies": [
