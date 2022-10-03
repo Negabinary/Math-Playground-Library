@@ -1021,33 +1021,33 @@
 
                                                                                             ],
                                                                                             "definition_identifier_names": [
-                                                                                                "y",
-                                                                                                "ys"
+                                                                                                "x",
+                                                                                                "xs"
                                                                                             ]
                                                                                         },
                                                                                         "dependencies": [
                                                                                             {
                                                                                                 "requirement": {
-                                                                                                    "goal": "List(list_contains(Cons(x)(xs)))(Cons(y)(ys))",
+                                                                                                    "goal": "List(list_contains(Cons(.x)(.xs)))(Cons(x)(xs))",
                                                                                                     "definitions": [
-                                                                                                        "y",
-                                                                                                        "ys"
+                                                                                                        "x",
+                                                                                                        "xs"
                                                                                                     ],
                                                                                                     "assumptions": [
-                                                                                                        "list_contains(xs)(y)",
-                                                                                                        "List(list_contains(xs))(ys)",
-                                                                                                        "List(list_contains(Cons(x)(xs)))(ys)"
+                                                                                                        "list_contains(.xs)(x)",
+                                                                                                        "List(list_contains(.xs))(xs)",
+                                                                                                        "List(list_contains(Cons(.x)(.xs)))(xs)"
                                                                                                     ]
                                                                                                 },
                                                                                                 "justification": {
                                                                                                     "justification_version": 1,
                                                                                                     "justification_type": "ModusPonensJustification",
-                                                                                                    "implication": "if(list_contains(Cons(x)(xs))(y))(if(List(list_contains(Cons(x)(xs)))(ys))(List(list_contains(Cons(x)(xs)))(Cons(y)(ys))))"
+                                                                                                    "implication": "if(list_contains(Cons(.x)(.xs))(x))(if(List(list_contains(Cons(.x)(.xs)))(xs))(List(list_contains(Cons(.x)(.xs)))(Cons(x)(xs))))"
                                                                                                 },
                                                                                                 "dependencies": [
                                                                                                     {
                                                                                                         "requirement": {
-                                                                                                            "goal": "list_contains(Cons(x)(xs))(y)",
+                                                                                                            "goal": "list_contains(Cons(.x)(.xs))(x)",
                                                                                                             "definitions": [
 
                                                                                                             ],
@@ -1058,17 +1058,17 @@
                                                                                                         "justification": {
                                                                                                             "justification_version": 1,
                                                                                                             "justification_type": "EqualityJustification",
-                                                                                                            "location_expr_item": "list_contains(Cons(x)(xs))(y)",
+                                                                                                            "location_expr_item": "list_contains(Cons(.x)(.xs))(x)",
                                                                                                             "location_indeces": [
 
                                                                                                             ],
-                                                                                                            "replace_with": "or(=(y)(x))(list_contains(xs)(y))",
+                                                                                                            "replace_with": "or(=(x)(.x))(list_contains(.xs)(x))",
                                                                                                             "forwards": false
                                                                                                         },
                                                                                                         "dependencies": [
                                                                                                             {
                                                                                                                 "requirement": {
-                                                                                                                    "goal": "or(=(y)(x))(list_contains(xs)(y))",
+                                                                                                                    "goal": "or(=(x)(.x))(list_contains(.xs)(x))",
                                                                                                                     "definitions": [
 
                                                                                                                     ],
@@ -1087,7 +1087,7 @@
                                                                                                                 "dependencies": [
                                                                                                                     {
                                                                                                                         "requirement": {
-                                                                                                                            "goal": "list_contains(xs)(y)",
+                                                                                                                            "goal": "list_contains(.xs)(x)",
                                                                                                                             "definitions": [
 
                                                                                                                             ],
@@ -1107,7 +1107,7 @@
                                                                                                             },
                                                                                                             {
                                                                                                                 "requirement": {
-                                                                                                                    "goal": "=(list_contains(Cons(x)(xs))(y))(or(=(y)(x))(list_contains(xs)(y)))",
+                                                                                                                    "goal": "=(list_contains(Cons(.x)(.xs))(x))(or(=(x)(.x))(list_contains(.xs)(x)))",
                                                                                                                     "definitions": [
 
                                                                                                                     ],
@@ -1145,7 +1145,7 @@
                                                                                                     },
                                                                                                     {
                                                                                                         "requirement": {
-                                                                                                            "goal": "List(list_contains(Cons(x)(xs)))(ys)",
+                                                                                                            "goal": "List(list_contains(Cons(.x)(.xs)))(xs)",
                                                                                                             "definitions": [
 
                                                                                                             ],
@@ -1163,7 +1163,7 @@
                                                                                                     },
                                                                                                     {
                                                                                                         "requirement": {
-                                                                                                            "goal": "if(list_contains(Cons(x)(xs))(y))(if(List(list_contains(Cons(x)(xs)))(ys))(List(list_contains(Cons(x)(xs)))(Cons(y)(ys))))",
+                                                                                                            "goal": "if(list_contains(Cons(.x)(.xs))(x))(if(List(list_contains(Cons(.x)(.xs)))(xs))(List(list_contains(Cons(.x)(.xs)))(Cons(x)(xs))))",
                                                                                                             "definitions": [
 
                                                                                                             ],
@@ -1365,7 +1365,7 @@
             ]
         },
         {
-            "string": "define no_duplicates\n\nassume no_duplicates []\nassume forall x xs. no_duplicates (Cons x xs) = (¬ (list_contains xs x) and no_duplicates xs)",
+            "string": "define no_duplicates\n\nassume no_duplicates []\nassume forall x xs. no_duplicates (Cons x xs) = (¬ (list_contains xs x) and no_duplicates xs)\n\nshow forall T, xs : List T, x x' : list_contains xs. if no_duplicates xs then x = x' or ¬(x = x')",
             "compiled": true,
             "title": "",
             "items": [
@@ -1380,6 +1380,1717 @@
                 {
                     "kind": "assumption",
                     "expr": "forall(x)(forall(xs)(=(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(T)(forall(xs)(if(List(T)(xs))(forall(x)(if(list_contains(xs)(x))(forall(x')(if(list_contains(xs)(x'))(if(no_duplicates(xs))(or(=(x)(x'))(¬(=(x)(x')))))))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(T)(forall(xs)(if(List(T)(xs))(forall(x)(if(list_contains(xs)(x))(forall(x')(if(list_contains(xs)(x'))(if(no_duplicates(xs))(or(=(x)(x'))(¬(=(x)(x')))))))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+                                1,
+                                2,
+                                3
+                            ],
+                            "keep_definition_ids": [
+                                2,
+                                3
+                            ],
+                            "definition_identifier_names": [
+                                "T",
+                                "xs"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "forall(x)(forall(x')(if(list_contains(xs)(x))(if(list_contains(xs)(x'))(if(no_duplicates(xs))(or(=(x)(x'))(¬(=(x)(x'))))))))",
+                                    "definitions": [
+                                        "T",
+                                        "xs"
+                                    ],
+                                    "assumptions": [
+                                        "List(T)(xs)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EliminatedLambdaJustification",
+                                    "location_expr_item": "forall(x)(forall(x')(if(list_contains(xs)(x))(if(list_contains(xs)(x'))(if(no_duplicates(xs))(or(=(x)(x'))(¬(=(x)(x'))))))))",
+                                    "location_indeces": [
+
+                                    ],
+                                    "replace_value": "xs",
+                                    "replace_with": "xs'",
+                                    "replace_positions": [
+                                        true,
+                                        true,
+                                        true
+                                    ]
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(xs)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(List(list_contains(xs))(xs))(if(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))([]))(if(forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(xs))(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(Cons(x)(xs))))))))(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(xs))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "List(list_contains(xs))(xs)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "ModusPonensJustification",
+                                                    "implication": "if(List(T)(xs))(List(list_contains(xs))(xs))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "List(T)(xs)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "if(List(T)(xs))(List(list_contains(xs))(xs))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(l)(if(List(T)(l))(List(list_contains(l))(l)))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(l)(if(List(T)(l))(List(list_contains(l))(l)))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(T)(forall(l)(if(List(T)(l))(List(list_contains(l))(l))))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(T)(forall(l)(if(List(T)(l))(List(list_contains(l))(l))))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))([])",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))([])",
+                                                    "location_indeces": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(forall(x')(if(list_contains([])(x))(if(list_contains([])(x'))(if(no_duplicates([]))(or(=(x)(x'))(¬(=(x)(x'))))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 2,
+                                                            "justification_type": "ImplicationJustification",
+                                                            "keep_condition_ids": [
+                                                                0
+                                                            ],
+                                                            "keep_definition_ids": [
+
+                                                            ],
+                                                            "definition_identifier_names": [
+                                                                "x",
+                                                                "x'"
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "if(list_contains([])(x))(or(=(x)(x'))(¬(=(x)(x'))))",
+                                                                    "definitions": [
+                                                                        "x",
+                                                                        "x'"
+                                                                    ],
+                                                                    "assumptions": [
+                                                                        "list_contains([])(x')",
+                                                                        "no_duplicates([])"
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "VacuousJustification"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "¬(list_contains([])(x))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "RefineJustification",
+                                                                            "general": "forall(x)(¬(list_contains([])(x)))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "forall(x)(¬(list_contains([])(x)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "AssumptionJustification"
+                                                                                },
+                                                                                "dependencies": [
+
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(xs))(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(Cons(x)(xs)))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(xs))(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(Cons(x)(xs)))))))",
+                                                    "location_indeces": [
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        1
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(xs))(forall(x)(forall(x')(if(list_contains(Cons(.x)(xs))(x))(if(list_contains(Cons(.x)(xs))(x'))(if(no_duplicates(Cons(.x)(xs)))(or(=(x)(x'))(¬(=(x)(x')))))))))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "IntroducedLambdaJustification",
+                                                            "location_expr_item": "forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(xs))(forall(x)(forall(x')(if(list_contains(Cons(.x)(xs))(x))(if(list_contains(Cons(.x)(xs))(x'))(if(no_duplicates(Cons(.x)(xs)))(or(=(x)(x'))(¬(=(x)(x')))))))))))))",
+                                                            "location_indeces": [
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                0
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(forall(x)(forall(x')(if(list_contains(xs)(x))(if(list_contains(xs)(x'))(if(no_duplicates(xs))(or(=(x)(x'))(¬(=(x)(x')))))))))(forall(x)(forall(x')(if(list_contains(Cons(.x)(xs))(x))(if(list_contains(Cons(.x)(xs))(x'))(if(no_duplicates(Cons(.x)(xs)))(or(=(x)(x'))(¬(=(x)(x')))))))))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 2,
+                                                                    "justification_type": "ImplicationJustification",
+                                                                    "keep_condition_ids": [
+
+                                                                    ],
+                                                                    "keep_definition_ids": [
+
+                                                                    ],
+                                                                    "definition_identifier_names": [
+                                                                        "y",
+                                                                        "ys",
+                                                                        "z",
+                                                                        "z'"
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "or(=(z)(z'))(¬(=(z)(z')))",
+                                                                            "definitions": [
+                                                                                "y",
+                                                                                "ys",
+                                                                                "z",
+                                                                                "z'"
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "list_contains(xs)(y)",
+                                                                                "List(list_contains(xs))(ys)",
+                                                                                "forall(x)(forall(x')(if(list_contains(ys)(x))(if(list_contains(ys)(x'))(if(no_duplicates(ys))(or(=(x)(x'))(¬(=(x)(x'))))))))",
+                                                                                "list_contains(Cons(y)(ys))(z)",
+                                                                                "list_contains(Cons(y)(ys))(z')",
+                                                                                "no_duplicates(Cons(y)(ys))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "CaseSplitJustification",
+                                                                            "disjunction": "or(=(z)(y))(list_contains(ys)(z))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "or(=(z)(z'))(¬(=(z)(z')))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+                                                                                        "=(z)(y)"
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "CaseSplitJustification",
+                                                                                    "disjunction": "or(=(z')(y))(list_contains(ys)(z'))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "or(=(z)(z'))(¬(=(z)(z')))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+                                                                                                "=(z')(y)"
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "EqualityJustification",
+                                                                                            "location_expr_item": "or(=(z)(z'))(¬(=(z)(z')))",
+                                                                                            "location_indeces": [
+                                                                                                0,
+                                                                                                0
+                                                                                            ],
+                                                                                            "replace_with": "y",
+                                                                                            "forwards": false
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "or(=(y)(z'))(¬(=(z)(z')))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "EqualityJustification",
+                                                                                                    "location_expr_item": "or(=(y)(z'))(¬(=(z)(z')))",
+                                                                                                    "location_indeces": [
+                                                                                                        0,
+                                                                                                        1
+                                                                                                    ],
+                                                                                                    "replace_with": "y",
+                                                                                                    "forwards": false
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "or(=(y)(y))(¬(=(z)(z')))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "OneOfJustification",
+                                                                                                            "keep_ids": [
+                                                                                                                true,
+                                                                                                                false
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "=(y)(y)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "ReflexiveJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "=(z')(y)",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "=(z)(y)",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "or(=(z)(z'))(¬(=(z)(z')))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+                                                                                                "list_contains(ys)(z')"
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "OneOfJustification",
+                                                                                            "keep_ids": [
+                                                                                                false,
+                                                                                                true
+                                                                                            ]
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "¬(=(z)(z'))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ContradictionJustification",
+                                                                                                    "contradiction": "list_contains(ys)(z')"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "list_contains(ys)(z')",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+                                                                                                                "=(z)(z')"
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "¬(list_contains(ys)(z'))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+                                                                                                                "=(z)(z')"
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                                            "implication": "if(no_duplicates(Cons(z')(ys)))(¬(list_contains(ys)(z')))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "no_duplicates(Cons(z')(ys))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "EqualityJustification",
+                                                                                                                    "location_expr_item": "no_duplicates(Cons(z')(ys))",
+                                                                                                                    "location_indeces": [
+                                                                                                                        0,
+                                                                                                                        0
+                                                                                                                    ],
+                                                                                                                    "replace_with": "z",
+                                                                                                                    "forwards": true
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "no_duplicates(Cons(z)(ys))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "EqualityJustification",
+                                                                                                                            "location_expr_item": "no_duplicates(Cons(z)(ys))",
+                                                                                                                            "location_indeces": [
+                                                                                                                                0,
+                                                                                                                                0
+                                                                                                                            ],
+                                                                                                                            "replace_with": "y",
+                                                                                                                            "forwards": false
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "no_duplicates(Cons(y)(ys))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+
+                                                                                                                                ]
+                                                                                                                            },
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "=(z)(y)",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "=(z)(z')",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "if(no_duplicates(Cons(z')(ys)))(¬(list_contains(ys)(z')))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(¬(list_contains(xs)(x)))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(¬(list_contains(xs)(x)))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "FromConjunctionJustification",
+                                                                                                                            "conjunction": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "SeparateBiimplicationJustification",
+                                                                                                                                    "indeces": [
+                                                                                                                                        1,
+                                                                                                                                        1
+                                                                                                                                    ],
+                                                                                                                                    "left": false
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+                                                                                                                                    {
+                                                                                                                                        "requirement": {
+                                                                                                                                            "goal": "forall(x)(forall(xs)(=(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))",
+                                                                                                                                            "definitions": [
+
+                                                                                                                                            ],
+                                                                                                                                            "assumptions": [
+
+                                                                                                                                            ]
+                                                                                                                                        },
+                                                                                                                                        "justification": {
+                                                                                                                                            "justification_version": 1,
+                                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                                        },
+                                                                                                                                        "dependencies": [
+
+                                                                                                                                        ]
+                                                                                                                                    }
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "or(=(z')(y))(list_contains(ys)(z'))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(list_contains(Cons(y)(ys))(z'))(or(=(z')(y))(list_contains(ys)(z')))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "list_contains(Cons(y)(ys))(z')",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(list_contains(Cons(y)(ys))(z'))(or(=(z')(y))(list_contains(ys)(z')))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(ys)(if(list_contains(Cons(y)(ys))(z'))(or(=(z')(y))(list_contains(ys)(z'))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(ys)(if(list_contains(Cons(y)(ys))(z'))(or(=(z')(y))(list_contains(ys)(z'))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "RefineJustification",
+                                                                                                            "general": "forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(z'))(or(=(z')(y))(list_contains(ys)(z')))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(z'))(or(=(z')(y))(list_contains(ys)(z')))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(x)(forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(x)(forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "SeparateBiimplicationJustification",
+                                                                                                                            "indeces": [
+                                                                                                                                1,
+                                                                                                                                1,
+                                                                                                                                1
+                                                                                                                            ],
+                                                                                                                            "left": false
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "forall(x)(forall(y)(forall(ys)(=(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "or(=(z)(z'))(¬(=(z)(z')))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+                                                                                        "list_contains(ys)(z)"
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "CaseSplitJustification",
+                                                                                    "disjunction": "or(=(z')(y))(list_contains(ys)(z'))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "or(=(z)(z'))(¬(=(z)(z')))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+                                                                                                "=(z')(y)"
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "OneOfJustification",
+                                                                                            "keep_ids": [
+                                                                                                false,
+                                                                                                true
+                                                                                            ]
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "¬(=(z)(z'))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ContradictionJustification",
+                                                                                                    "contradiction": "list_contains(ys)(z)"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "list_contains(ys)(z)",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+                                                                                                                "=(z)(z')"
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "¬(list_contains(ys)(z))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+                                                                                                                "=(z)(z')"
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                                            "implication": "if(no_duplicates(Cons(z)(ys)))(¬(list_contains(ys)(z)))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "no_duplicates(Cons(z)(ys))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "EqualityJustification",
+                                                                                                                    "location_expr_item": "no_duplicates(Cons(z)(ys))",
+                                                                                                                    "location_indeces": [
+                                                                                                                        0,
+                                                                                                                        0
+                                                                                                                    ],
+                                                                                                                    "replace_with": "z'",
+                                                                                                                    "forwards": false
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "no_duplicates(Cons(z')(ys))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "EqualityJustification",
+                                                                                                                            "location_expr_item": "no_duplicates(Cons(z')(ys))",
+                                                                                                                            "location_indeces": [
+                                                                                                                                0,
+                                                                                                                                0
+                                                                                                                            ],
+                                                                                                                            "replace_with": "y",
+                                                                                                                            "forwards": false
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "no_duplicates(Cons(y)(ys))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+
+                                                                                                                                ]
+                                                                                                                            },
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "=(z')(y)",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "=(z)(z')",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "if(no_duplicates(Cons(z)(ys)))(¬(list_contains(ys)(z)))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(¬(list_contains(xs)(x)))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(¬(list_contains(xs)(x)))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "FromConjunctionJustification",
+                                                                                                                            "conjunction": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "SeparateBiimplicationJustification",
+                                                                                                                                    "indeces": [
+                                                                                                                                        1,
+                                                                                                                                        1
+                                                                                                                                    ],
+                                                                                                                                    "left": false
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+                                                                                                                                    {
+                                                                                                                                        "requirement": {
+                                                                                                                                            "goal": "forall(x)(forall(xs)(=(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))",
+                                                                                                                                            "definitions": [
+
+                                                                                                                                            ],
+                                                                                                                                            "assumptions": [
+
+                                                                                                                                            ]
+                                                                                                                                        },
+                                                                                                                                        "justification": {
+                                                                                                                                            "justification_version": 1,
+                                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                                        },
+                                                                                                                                        "dependencies": [
+
+                                                                                                                                        ]
+                                                                                                                                    }
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "or(=(z)(z'))(¬(=(z)(z')))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+                                                                                                "list_contains(ys)(z')"
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(list_contains(ys)(z))(if(list_contains(ys)(z'))(if(no_duplicates(ys))(or(=(z)(z'))(¬(=(z)(z'))))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "list_contains(ys)(z)",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "list_contains(ys)(z')",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "no_duplicates(ys)",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                                    "implication": "if(no_duplicates(Cons(y)(ys)))(no_duplicates(ys))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "no_duplicates(Cons(y)(ys))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "if(no_duplicates(Cons(y)(ys)))(no_duplicates(ys))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "RefineJustification",
+                                                                                                            "general": "forall(xs)(if(no_duplicates(Cons(y)(xs)))(no_duplicates(xs)))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "forall(xs)(if(no_duplicates(Cons(y)(xs)))(no_duplicates(xs)))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(no_duplicates(xs))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(no_duplicates(xs))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "FromConjunctionJustification",
+                                                                                                                            "conjunction": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "forall(x)(forall(xs)(if(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "SeparateBiimplicationJustification",
+                                                                                                                                    "indeces": [
+                                                                                                                                        1,
+                                                                                                                                        1
+                                                                                                                                    ],
+                                                                                                                                    "left": false
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+                                                                                                                                    {
+                                                                                                                                        "requirement": {
+                                                                                                                                            "goal": "forall(x)(forall(xs)(=(no_duplicates(Cons(x)(xs)))(and(¬(list_contains(xs)(x)))(no_duplicates(xs)))))",
+                                                                                                                                            "definitions": [
+
+                                                                                                                                            ],
+                                                                                                                                            "assumptions": [
+
+                                                                                                                                            ]
+                                                                                                                                        },
+                                                                                                                                        "justification": {
+                                                                                                                                            "justification_version": 1,
+                                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                                        },
+                                                                                                                                        "dependencies": [
+
+                                                                                                                                        ]
+                                                                                                                                    }
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(list_contains(ys)(z))(if(list_contains(ys)(z'))(if(no_duplicates(ys))(or(=(z)(z'))(¬(=(z)(z'))))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(x)(forall(x')(if(list_contains(ys)(x))(if(list_contains(ys)(x'))(if(no_duplicates(ys))(or(=(x)(x'))(¬(=(x)(x'))))))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(x)(forall(x')(if(list_contains(ys)(x))(if(list_contains(ys)(x'))(if(no_duplicates(ys))(or(=(x)(x'))(¬(=(x)(x'))))))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "or(=(z')(y))(list_contains(ys)(z'))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(list_contains(Cons(y)(ys))(z'))(or(=(z')(y))(list_contains(ys)(z')))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "list_contains(Cons(y)(ys))(z')",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(list_contains(Cons(y)(ys))(z'))(or(=(z')(y))(list_contains(ys)(z')))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(x)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(x)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "RefineJustification",
+                                                                                                            "general": "forall(x)(forall(ys)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x)))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "forall(x)(forall(ys)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x)))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(x)(forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(x)(forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "SeparateBiimplicationJustification",
+                                                                                                                            "indeces": [
+                                                                                                                                1,
+                                                                                                                                1,
+                                                                                                                                1
+                                                                                                                            ],
+                                                                                                                            "left": false
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "forall(x)(forall(y)(forall(ys)(=(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "or(=(z)(y))(list_contains(ys)(z))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                    "implication": "if(list_contains(Cons(y)(ys))(z))(or(=(z)(y))(list_contains(ys)(z)))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "list_contains(Cons(y)(ys))(z)",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "if(list_contains(Cons(y)(ys))(z))(or(=(z)(y))(list_contains(ys)(z)))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(ys)(if(list_contains(Cons(y)(ys))(z))(or(=(z)(y))(list_contains(ys)(z))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(ys)(if(list_contains(Cons(y)(ys))(z))(or(=(z)(y))(list_contains(ys)(z))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(z))(or(=(z)(y))(list_contains(ys)(z)))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(z))(or(=(z)(y))(list_contains(ys)(z)))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "RefineJustification",
+                                                                                                            "general": "forall(x)(forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "forall(x)(forall(y)(forall(ys)(if(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "SeparateBiimplicationJustification",
+                                                                                                                    "indeces": [
+                                                                                                                        1,
+                                                                                                                        1,
+                                                                                                                        1
+                                                                                                                    ],
+                                                                                                                    "left": false
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(x)(forall(y)(forall(ys)(=(list_contains(Cons(y)(ys))(x))(or(=(x)(y))(list_contains(ys)(x))))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(List(list_contains(xs))(xs))(if(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))([]))(if(forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(xs))(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(Cons(x)(xs))))))))(lambda(xs')(forall(x)(forall(x')(if(list_contains(xs')(x))(if(list_contains(xs')(x'))(if(no_duplicates(xs'))(or(=(x)(x'))(¬(=(x)(x')))))))))(xs))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(l)(forall(P)(if(List(list_contains(xs))(l))(if(P([]))(if(forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(l)(forall(P)(if(List(list_contains(xs))(l))(if(P([]))(if(forall(x)(if(list_contains(xs)(x))(forall(xs)(if(List(list_contains(.xs))(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         },
