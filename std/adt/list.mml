@@ -1365,7 +1365,7 @@
             ]
         },
         {
-            "string": "define no_duplicates\n\nassume no_duplicates []\nassume forall x xs. no_duplicates (Cons x xs) = (¬ (list_contains xs x) and no_duplicates xs)\n\nshow forall T, xs : List T, x x' : list_contains xs. if no_duplicates xs then x = x' or ¬(x = x')",
+            "string": "define no_duplicates\n\nassume no_duplicates []\nassume forall x xs. no_duplicates (Cons x xs) = (¬ (list_contains xs x) and no_duplicates xs)\n\nshow forall T, xs : List T, x x' : list_contains xs. if no_duplicates xs then x = x' or ¬(x = x')\nshow forall T, xs : List T, x x' : list_contains xs. if no_duplicates xs then bool(x = x')",
             "compiled": true,
             "title": "",
             "items": [
@@ -3091,6 +3091,63 @@
                             }
                         ]
                     }
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(T)(forall(xs)(if(List(T)(xs))(forall(x)(if(list_contains(xs)(x))(forall(x')(if(list_contains(xs)(x'))(if(no_duplicates(xs))(bool(=(x)(x'))))))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(T)(forall(xs)(if(List(T)(xs))(forall(x)(if(list_contains(xs)(x))(forall(x')(if(list_contains(xs)(x'))(if(no_duplicates(xs))(bool(=(x)(x'))))))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "T",
+                                "xs",
+                                "x",
+                                "x'"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "bool(=(x)(x'))",
+                                    "definitions": [
+                                        "T",
+                                        "xs",
+                                        "x",
+                                        "x'"
+                                    ],
+                                    "assumptions": [
+                                        "List(T)(xs)",
+                                        "list_contains(xs)(x)",
+                                        "list_contains(xs)(x')",
+                                        "no_duplicates(xs)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "MissingJustification"
+                                },
+                                "dependencies": [
+
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -4521,6 +4578,82 @@
                                             }
                                         ]
                                     }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "string": "define erase\nassume forall p. erase p [] = []\nassume forall p x xs. if p x then erase p (Cons x xs) = erase p xs\nassume forall p x xs. if ¬(p x) then erase p (Cons x xs) = Cons x (erase p xs)\nshow erase : forall T. (T -> bool) -> List T -> List T",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "erase"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(p)(=(erase(p)([]))([]))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(p)(forall(x)(forall(xs)(if(p(x))(=(erase(p)(Cons(x)(xs)))(erase(p)(xs))))))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(p)(forall(x)(forall(xs)(if(¬(p(x)))(=(erase(p)(Cons(x)(xs)))(Cons(x)(erase(p)(xs)))))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(T)(forall(T466)(if(forall(T381)(if(T(T381))(bool(T466(T381)))))(forall(T164)(if(List(T)(T164))(List(T)(erase(T466)(T164)))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(T)(forall(T466)(if(forall(T381)(if(T(T381))(bool(T466(T381)))))(forall(T164)(if(List(T)(T164))(List(T)(erase(T466)(T164)))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "T",
+                                "T466",
+                                "T164"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "List(T)(erase(T466)(T164))",
+                                    "definitions": [
+                                        "T",
+                                        "T466",
+                                        "T164"
+                                    ],
+                                    "assumptions": [
+                                        "forall(T381)(if(T(T381))(bool(T466(T381))))",
+                                        "List(T)(T164)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "MissingJustification"
+                                },
+                                "dependencies": [
+
                                 ]
                             }
                         ]
