@@ -3700,6 +3700,765 @@
                     }
                 }
             ]
+        },
+        {
+            "string": "define ite\nassume forall P Q. ite true P Q = P\nassume forall P Q. ite false P Q = Q\nshow forall T. ite : bool -> T -> T -> T\n\nshow forall A P Q. if A then ite A P Q = P\nshow forall A P Q. if ¬ A then ite A P Q = Q",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "ite"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(P)(forall(Q)(=(ite(true)(P)(Q))(P)))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(P)(forall(Q)(=(ite(false)(P)(Q))(Q)))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(T)(forall(T776)(if(bool(T776))(forall(T771)(if(T(T771))(forall(T773)(if(T(T773))(T(ite(T776)(T771)(T773)))))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(T)(forall(T776)(if(bool(T776))(forall(T771)(if(T(T771))(forall(T773)(if(T(T773))(T(ite(T776)(T771)(T773)))))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "T",
+                                "T381",
+                                "T164",
+                                "T350"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "T(ite(T381)(T164)(T350))",
+                                    "definitions": [
+                                        "T",
+                                        "T381",
+                                        "T164",
+                                        "T350"
+                                    ],
+                                    "assumptions": [
+                                        "bool(T381)",
+                                        "T(T164)",
+                                        "T(T350)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "CaseSplitJustification",
+                                    "disjunction": "or(=(T381)(true))(=(T381)(false))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "T(ite(T381)(T164)(T350))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+                                                "=(T381)(true)"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "EqualityJustification",
+                                            "location_expr_item": "T(ite(T381)(T164)(T350))",
+                                            "location_indeces": [
+                                                0,
+                                                0
+                                            ],
+                                            "replace_with": "true",
+                                            "forwards": false
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "T(ite(true)(T164)(T350))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "EqualityJustification",
+                                                    "location_expr_item": "T(ite(true)(T164)(T350))",
+                                                    "location_indeces": [
+                                                        0
+                                                    ],
+                                                    "replace_with": "T164",
+                                                    "forwards": false
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "T(T164)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "=(ite(true)(T164)(T350))(T164)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(P)(forall(Q)(=(ite(true)(P)(Q))(P)))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(P)(forall(Q)(=(ite(true)(P)(Q))(P)))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "=(T381)(true)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "T(ite(T381)(T164)(T350))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+                                                "=(T381)(false)"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "EqualityJustification",
+                                            "location_expr_item": "T(ite(T381)(T164)(T350))",
+                                            "location_indeces": [
+                                                0,
+                                                0
+                                            ],
+                                            "replace_with": "false",
+                                            "forwards": false
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "T(ite(false)(T164)(T350))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "EqualityJustification",
+                                                    "location_expr_item": "T(ite(false)(T164)(T350))",
+                                                    "location_indeces": [
+                                                        0
+                                                    ],
+                                                    "replace_with": "T350",
+                                                    "forwards": false
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "T(T350)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "=(ite(false)(T164)(T350))(T350)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(P)(forall(Q)(=(ite(false)(P)(Q))(Q)))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(P)(forall(Q)(=(ite(false)(P)(Q))(Q)))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "=(T381)(false)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "or(=(T381)(true))(=(T381)(false))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(bool(T381))(or(=(T381)(true))(=(T381)(false)))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "bool(T381)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(bool(T381))(or(=(T381)(true))(=(T381)(false)))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(b)(if(bool(b))(or(=(b)(true))(=(b)(false))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(b)(if(bool(b))(or(=(b)(true))(=(b)(false))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(A)(forall(P)(forall(Q)(if(A)(=(ite(A)(P)(Q))(P)))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(A)(forall(P)(forall(Q)(if(A)(=(ite(A)(P)(Q))(P)))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "A",
+                                "P",
+                                "Q"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "=(ite(A)(P)(Q))(P)",
+                                    "definitions": [
+                                        "A",
+                                        "P",
+                                        "Q"
+                                    ],
+                                    "assumptions": [
+                                        "A"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EqualityJustification",
+                                    "location_expr_item": "=(ite(A)(P)(Q))(P)",
+                                    "location_indeces": [
+                                        0,
+                                        0
+                                    ],
+                                    "replace_with": "true",
+                                    "forwards": true
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "=(ite(true)(P)(Q))(P)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "RefineJustification",
+                                            "general": "forall(P)(forall(Q)(=(ite(true)(P)(Q))(P)))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(P)(forall(Q)(=(ite(true)(P)(Q))(P)))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "=(true)(A)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "BothDirectionsJustification"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(true)(A)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "ImplicationJustification",
+                                                    "keep_condition_ids": [
+
+                                                    ],
+                                                    "keep_definition_ids": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "A",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "true"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(A)(true)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "ImplicationJustification",
+                                                    "keep_condition_ids": [
+
+                                                    ],
+                                                    "keep_definition_ids": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "true",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+                                                                "A"
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(A)(forall(P)(forall(Q)(if(¬(A))(=(ite(A)(P)(Q))(Q)))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(A)(forall(P)(forall(Q)(if(¬(A))(=(ite(A)(P)(Q))(Q)))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "A",
+                                "P",
+                                "Q"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "=(ite(A)(P)(Q))(Q)",
+                                    "definitions": [
+                                        "A",
+                                        "P",
+                                        "Q"
+                                    ],
+                                    "assumptions": [
+                                        "¬(A)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EqualityJustification",
+                                    "location_expr_item": "=(ite(A)(P)(Q))(Q)",
+                                    "location_indeces": [
+                                        0,
+                                        0
+                                    ],
+                                    "replace_with": "false",
+                                    "forwards": true
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "=(ite(false)(P)(Q))(Q)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "RefineJustification",
+                                            "general": "forall(P)(forall(Q)(=(ite(false)(P)(Q))(Q)))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(P)(forall(Q)(=(ite(false)(P)(Q))(Q)))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "=(false)(A)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "BothDirectionsJustification"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(false)(A)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "VacuousJustification"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "¬(false)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(A)(false)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "VacuousJustification"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "¬(A)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
         }
     ],
     "version": 30
