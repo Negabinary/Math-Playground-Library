@@ -4586,6 +4586,1177 @@
             ]
         },
         {
+            "string": "show forall S T, xs : List T, q : T -> S, p : S -> bool. count p (map q xs) = count (fun x. p(q(x))) xs",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "theorem",
+                    "expr": "forall(S)(forall(T)(forall(xs)(if(List(T)(xs))(forall(q)(if(forall(T431)(if(T(T431))(S(q(T431)))))(forall(p)(if(forall(T773)(if(S(T773))(bool(p(T773)))))(=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs))))))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(S)(forall(T)(forall(xs)(if(List(T)(xs))(forall(q)(if(forall(T431)(if(T(T431))(S(q(T431)))))(forall(p)(if(forall(T773)(if(S(T773))(bool(p(T773)))))(=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs))))))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "S",
+                                "T",
+                                "xs",
+                                "q",
+                                "p"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs))",
+                                    "definitions": [
+                                        "S",
+                                        "T",
+                                        "xs",
+                                        "q",
+                                        "p"
+                                    ],
+                                    "assumptions": [
+                                        "List(T)(xs)",
+                                        "forall(T431)(if(T(T431))(S(q(T431))))",
+                                        "forall(T773)(if(S(T773))(bool(p(T773))))"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EliminatedLambdaJustification",
+                                    "location_expr_item": "=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs))",
+                                    "location_indeces": [
+
+                                    ],
+                                    "replace_value": "xs",
+                                    "replace_with": "xs'",
+                                    "replace_positions": [
+                                        true,
+                                        true
+                                    ]
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(xs)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(List(T)(xs))(if(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(xs))(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(Cons(x)(xs))))))))(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(xs))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "List(T)(xs)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))([])",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))([])",
+                                                    "location_indeces": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "=(count(p)(map(q)([])))(count(lambda(x)(p(q(x))))([]))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "EqualityJustification",
+                                                            "location_expr_item": "=(count(p)(map(q)([])))(count(lambda(x)(p(q(x))))([]))",
+                                                            "location_indeces": [
+                                                                0,
+                                                                1
+                                                            ],
+                                                            "replace_with": "[]",
+                                                            "forwards": false
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(count(p)([]))(count(lambda(x)(p(q(x))))([]))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "EqualityJustification",
+                                                                    "location_expr_item": "=(count(p)([]))(count(lambda(x)(p(q(x))))([]))",
+                                                                    "location_indeces": [
+                                                                        1
+                                                                    ],
+                                                                    "replace_with": "0",
+                                                                    "forwards": false
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "=(count(p)([]))(0)",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "RefineJustification",
+                                                                            "general": "forall(p)(=(count(p)([]))(0))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "forall(p)(=(count(p)([]))(0))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "AssumptionJustification"
+                                                                                },
+                                                                                "dependencies": [
+
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "=(count(lambda(x)(p(q(x))))([]))(0)",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "RefineJustification",
+                                                                            "general": "forall(p)(=(count(p)([]))(0))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "forall(p)(=(count(p)([]))(0))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "AssumptionJustification"
+                                                                                },
+                                                                                "dependencies": [
+
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(map(q)([]))([])",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(f)(=(map(f)([]))([]))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(f)(=(map(f)([]))([]))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(xs))(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(Cons(x)(xs)))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(xs))(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(Cons(x)(xs)))))))",
+                                                    "location_indeces": [
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        0
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs)))(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(Cons(x)(xs)))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "IntroducedLambdaJustification",
+                                                            "location_expr_item": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs)))(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(Cons(x)(xs)))))))",
+                                                            "location_indeces": [
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs)))(=(count(p)(map(q)(Cons(x)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs))))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 2,
+                                                                    "justification_type": "ImplicationJustification",
+                                                                    "keep_condition_ids": [
+
+                                                                    ],
+                                                                    "keep_definition_ids": [
+
+                                                                    ],
+                                                                    "definition_identifier_names": [
+                                                                        "x",
+                                                                        "xs"
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "=(count(p)(map(q)(Cons(x)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                            "definitions": [
+                                                                                "x",
+                                                                                "xs"
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "T(x)",
+                                                                                "List(T)(xs)",
+                                                                                "=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "EqualityJustification",
+                                                                            "location_expr_item": "=(count(p)(map(q)(Cons(x)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                            "location_indeces": [
+                                                                                0,
+                                                                                1
+                                                                            ],
+                                                                            "replace_with": "Cons(q(x))(map(q)(xs))",
+                                                                            "forwards": false
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "=(count(p)(Cons(q(x))(map(q)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "CaseSplitJustification",
+                                                                                    "disjunction": "or(p(q(x)))(¬(p(q(x))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "=(count(p)(Cons(q(x))(map(q)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+                                                                                                "p(q(x))"
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "EqualityJustification",
+                                                                                            "location_expr_item": "=(count(p)(Cons(q(x))(map(q)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                                            "location_indeces": [
+                                                                                                0
+                                                                                            ],
+                                                                                            "replace_with": ".S(count(p)(map(q)(xs)))",
+                                                                                            "forwards": false
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "=(.S(count(p)(map(q)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "EqualityJustification",
+                                                                                                    "location_expr_item": "=(.S(count(p)(map(q)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                                                    "location_indeces": [
+                                                                                                        1
+                                                                                                    ],
+                                                                                                    "replace_with": ".S(count(lambda(x)(p(q(x))))(xs))",
+                                                                                                    "forwards": false
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "=(.S(count(p)(map(q)(xs))))(.S(count(lambda(x)(p(q(x))))(xs)))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "MatchingJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "=(.S)(.S)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "ReflexiveJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "=(count(lambda(x)(p(q(x))))(Cons(x)(xs)))(.S(count(lambda(x)(p(q(x))))(xs)))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                                            "implication": "if(lambda(x)(p(q(x)))(x))(=(count(lambda(x)(p(q(x))))(Cons(x)(xs)))(.S(count(lambda(x)(p(q(x))))(xs))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "lambda(x)(p(q(x)))(x)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "IntroducedLambdaJustification",
+                                                                                                                    "location_expr_item": "lambda(x)(p(q(x)))(x)",
+                                                                                                                    "location_indeces": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "p(q(x))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "if(lambda(x)(p(q(x)))(x))(=(count(lambda(x)(p(q(x))))(Cons(x)(xs)))(.S(count(lambda(x)(p(q(x))))(xs))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(p)(forall(x)(forall(xs)(if(p(x))(=(count(p)(Cons(x)(xs)))(.S(count(p)(xs)))))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(p)(forall(x)(forall(xs)(if(p(x))(=(count(p)(Cons(x)(xs)))(.S(count(p)(xs)))))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "=(count(p)(Cons(q(x))(map(q)(xs))))(.S(count(p)(map(q)(xs))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                                    "implication": "if(p(q(x)))(=(count(p)(Cons(q(x))(map(q)(xs))))(.S(count(p)(map(q)(xs)))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "p(q(x))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "if(p(q(x)))(=(count(p)(Cons(q(x))(map(q)(xs))))(.S(count(p)(map(q)(xs)))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "RefineJustification",
+                                                                                                            "general": "forall(p)(forall(x)(forall(xs)(if(p(x))(=(count(p)(Cons(x)(xs)))(.S(count(p)(xs)))))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "forall(p)(forall(x)(forall(xs)(if(p(x))(=(count(p)(Cons(x)(xs)))(.S(count(p)(xs)))))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "=(count(p)(Cons(q(x))(map(q)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+                                                                                                "¬(p(q(x)))"
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "EqualityJustification",
+                                                                                            "location_expr_item": "=(count(p)(Cons(q(x))(map(q)(xs))))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                                            "location_indeces": [
+                                                                                                0
+                                                                                            ],
+                                                                                            "replace_with": "count(p)(map(q)(xs))",
+                                                                                            "forwards": false
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "EqualityJustification",
+                                                                                                    "location_expr_item": "=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(Cons(x)(xs)))",
+                                                                                                    "location_indeces": [
+                                                                                                        1
+                                                                                                    ],
+                                                                                                    "replace_with": "count(lambda(x)(p(q(x))))(xs)",
+                                                                                                    "forwards": false
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "=(count(p)(map(q)(xs)))(count(lambda(x)(p(q(x))))(xs))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "=(count(lambda(x)(p(q(x))))(Cons(x)(xs)))(count(lambda(x)(p(q(x))))(xs))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                                            "implication": "if(¬(lambda(x)(p(q(x)))(x)))(=(count(lambda(x)(p(q(x))))(Cons(x)(xs)))(count(lambda(x)(p(q(x))))(xs)))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "¬(lambda(x)(p(q(x)))(x))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "IntroducedLambdaJustification",
+                                                                                                                    "location_expr_item": "¬(lambda(x)(p(q(x)))(x))",
+                                                                                                                    "location_indeces": [
+                                                                                                                        0
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "¬(p(q(x)))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "if(¬(lambda(x)(p(q(x)))(x)))(=(count(lambda(x)(p(q(x))))(Cons(x)(xs)))(count(lambda(x)(p(q(x))))(xs)))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(p)(forall(x)(forall(xs)(if(¬(p(x)))(=(count(p)(Cons(x)(xs)))(count(p)(xs))))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(p)(forall(x)(forall(xs)(if(¬(p(x)))(=(count(p)(Cons(x)(xs)))(count(p)(xs))))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "=(count(p)(Cons(q(x))(map(q)(xs))))(count(p)(map(q)(xs)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                                    "implication": "if(¬(p(q(x))))(=(count(p)(Cons(q(x))(map(q)(xs))))(count(p)(map(q)(xs))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "¬(p(q(x)))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "if(¬(p(q(x))))(=(count(p)(Cons(q(x))(map(q)(xs))))(count(p)(map(q)(xs))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "RefineJustification",
+                                                                                                            "general": "forall(p)(forall(x)(forall(xs)(if(¬(p(x)))(=(count(p)(Cons(x)(xs)))(count(p)(xs))))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "forall(p)(forall(x)(forall(xs)(if(¬(p(x)))(=(count(p)(Cons(x)(xs)))(count(p)(xs))))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "or(p(q(x)))(¬(p(q(x))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                            "implication": "if(bool(p(q(x))))(or(p(q(x)))(¬(p(q(x)))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "bool(p(q(x)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                                    "implication": "if(S(q(x)))(bool(p(q(x))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "S(q(x))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                                            "implication": "if(T(x))(S(q(x)))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "T(x)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "if(T(x))(S(q(x)))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(T431)(if(T(T431))(S(q(T431))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(T431)(if(T(T431))(S(q(T431))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "if(S(q(x)))(bool(p(q(x))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "RefineJustification",
+                                                                                                            "general": "forall(T773)(if(S(T773))(bool(p(T773))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "forall(T773)(if(S(T773))(bool(p(T773))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "if(bool(p(q(x))))(or(p(q(x)))(¬(p(q(x)))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "RefineJustification",
+                                                                                                    "general": "forall(x)(if(bool(x))(or(x)(¬(x))))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "forall(x)(if(bool(x))(or(x)(¬(x))))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                        },
+                                                                                                        "dependencies": [
+
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "=(map(q)(Cons(x)(xs)))(Cons(q(x))(map(q)(xs)))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "RefineJustification",
+                                                                                    "general": "forall(f)(forall(x)(forall(xs)(=(map(f)(Cons(x)(xs)))(Cons(f(x))(map(f)(xs))))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "forall(f)(forall(x)(forall(xs)(=(map(f)(Cons(x)(xs)))(Cons(f(x))(map(f)(xs))))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(List(T)(xs))(if(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(xs))(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(Cons(x)(xs))))))))(lambda(xs')(=(count(p)(map(q)(xs')))(count(lambda(x)(p(q(x))))(xs')))(xs))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(l)(forall(P)(if(List(T)(l))(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(l)(forall(P)(if(List(T)(l))(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "string": "define filter\nassume forall p. filter p [] = []\nassume forall p x xs. if p x then filter p (Cons x xs) = Cons x (filter p xs)\nassume forall p x xs. if ¬(p x) then filter p (Cons x xs) = filter p xs\nshow filter : forall T. (T -> bool) -> List T -> List T",
             "compiled": true,
             "title": "",
