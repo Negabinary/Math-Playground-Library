@@ -3,6 +3,7 @@
         {
             "string": "define option\n\ndefine Some : forall T. T -> option T\ndefine None : forall T. option T\nassume forall x. ¬(Some x = None)\nassume forall x y. (Some x = Some y) = (x = y)\nassume forall T x. if x : option T then x = None or (exists t : T. x = Some t)",
             "compiled": true,
+            "title": "",
             "items": [
                 {
                     "kind": "definition",
@@ -35,6 +36,426 @@
                 {
                     "kind": "assumption",
                     "expr": "forall(T)(forall(x)(if(option(T)(x))(or(=(x)(None))(exists(t)(and(T(t))(=(x)(Some(t))))))))"
+                }
+            ]
+        },
+        {
+            "string": "define default\nassume forall x y. default x (Some y) = y\nassume forall x. default x None = x\nshow default : forall A. A -> option A -> A",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "default"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(x)(forall(y)(=(default(x)(Some(y)))(y)))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(x)(=(default(x)(None))(x))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(A)(forall(T658)(if(A(T658))(forall(T779)(if(option(A)(T779))(A(default(T658)(T779)))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(A)(forall(T658)(if(A(T658))(forall(T779)(if(option(A)(T779))(A(default(T658)(T779)))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "A",
+                                "T658",
+                                "T779"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "A(default(T658)(T779))",
+                                    "definitions": [
+                                        "A",
+                                        "T658",
+                                        "T779"
+                                    ],
+                                    "assumptions": [
+                                        "A(T658)",
+                                        "option(A)(T779)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "CaseSplitJustification",
+                                    "disjunction": "or(=(T779)(None))(exists(t)(and(A(t))(=(T779)(Some(t)))))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "A(default(T658)(T779))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+                                                "=(T779)(None)"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "EqualityJustification",
+                                            "location_expr_item": "A(default(T658)(T779))",
+                                            "location_indeces": [
+                                                0,
+                                                1
+                                            ],
+                                            "replace_with": "None",
+                                            "forwards": false
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "A(default(T658)(None))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "EqualityJustification",
+                                                    "location_expr_item": "A(default(T658)(None))",
+                                                    "location_indeces": [
+                                                        0
+                                                    ],
+                                                    "replace_with": "T658",
+                                                    "forwards": false
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "A(T658)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "=(default(T658)(None))(T658)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(x)(=(default(x)(None))(x))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(=(default(x)(None))(x))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "=(T779)(None)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "A(default(T658)(T779))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+                                                "exists(t)(and(A(t))(=(T779)(Some(t))))"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "InstantiateJustification",
+                                            "new_type": "t",
+                                            "existential": "exists(t)(and(A(t))(=(T779)(Some(t))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "A(default(T658)(T779))",
+                                                    "definitions": [
+                                                        "t"
+                                                    ],
+                                                    "assumptions": [
+                                                        "A(t)",
+                                                        "=(T779)(Some(t))"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "EqualityJustification",
+                                                    "location_expr_item": "A(default(T658)(T779))",
+                                                    "location_indeces": [
+                                                        0,
+                                                        1
+                                                    ],
+                                                    "replace_with": "Some(t)",
+                                                    "forwards": false
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "A(default(T658)(Some(t)))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "EqualityJustification",
+                                                            "location_expr_item": "A(default(T658)(Some(t)))",
+                                                            "location_indeces": [
+                                                                0
+                                                            ],
+                                                            "replace_with": "t",
+                                                            "forwards": false
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "A(t)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(default(T658)(Some(t)))(t)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(x)(forall(y)(=(default(x)(Some(y)))(y)))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(x)(forall(y)(=(default(x)(Some(y)))(y)))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "=(T779)(Some(t))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "exists(t)(and(A(t))(=(T779)(Some(t))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "or(=(T779)(None))(exists(t)(and(A(t))(=(T779)(Some(t)))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(option(A)(T779))(or(=(T779)(None))(exists(t)(and(A(t))(=(T779)(Some(t))))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "option(A)(T779)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(option(A)(T779))(or(=(T779)(None))(exists(t)(and(A(t))(=(T779)(Some(t))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(T)(forall(x)(if(option(T)(x))(or(=(x)(None))(exists(t)(and(T(t))(=(x)(Some(t))))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(T)(forall(x)(if(option(T)(x))(or(=(x)(None))(exists(t)(and(T(t))(=(x)(Some(t))))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         }
