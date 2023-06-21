@@ -1,0 +1,1089 @@
+{
+    "cells": [
+        {
+            "string": "import std.adt.list\nimport std.adt.pair",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "import",
+                    "module": "std.adt.list",
+                    "namespace": false
+                },
+                {
+                    "kind": "import",
+                    "module": "std.adt.pair",
+                    "namespace": false
+                }
+            ]
+        },
+        {
+            "string": "define AssocList A B as List (Pair A B)",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "AssocList"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(A)(forall(B)(=(AssocList(A)(B))(List(Pair(A)(B)))))"
+                }
+            ]
+        },
+        {
+            "string": "import std.adt.option\nimport std.adt.deceq",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "import",
+                    "module": "std.adt.option",
+                    "namespace": false
+                },
+                {
+                    "kind": "import",
+                    "module": "std.adt.deceq",
+                    "namespace": false
+                }
+            ]
+        },
+        {
+            "string": "define find\nassume forall k. find k [] = None\nassume forall k v xs. find k (Cons(pair(k,v), xs)) = Some(v)\nassume forall k1 k2 v xs. if ¬(k1 = k2) then find k1 (Cons(pair(k2, v), xs)) = find k1 xs\nshow forall A:DecEq, B. find : A -> AssocList A B -> option B",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "find"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(k)(=(find(k)([]))(None))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(k)(forall(v)(forall(xs)(=(find(k)(Cons(pair(k)(v))(xs)))(Some(v)))))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(k1)(forall(k2)(forall(v)(forall(xs)(if(¬(=(k1)(k2)))(=(find(k1)(Cons(pair(k2)(v))(xs)))(find(k1)(xs)))))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(A)(if(DecEq(A))(forall(B)(forall(T215)(if(A(T215))(forall(T428)(if(AssocList(A)(B)(T428))(option(B)(find(T215)(T428)))))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(A)(if(DecEq(A))(forall(B)(forall(T215)(if(A(T215))(forall(T428)(if(AssocList(A)(B)(T428))(option(B)(find(T215)(T428)))))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "A",
+                                "B",
+                                "T215",
+                                "T428"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "option(B)(find(T215)(T428))",
+                                    "definitions": [
+                                        "A",
+                                        "B",
+                                        "T215",
+                                        "T428"
+                                    ],
+                                    "assumptions": [
+                                        "DecEq(A)",
+                                        "A(T215)",
+                                        "AssocList(A)(B)(T428)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "EliminatedLambdaJustification",
+                                    "location_expr_item": "option(B)(find(T215)(T428))",
+                                    "location_indeces": [
+
+                                    ],
+                                    "replace_value": "T428",
+                                    "replace_with": "xs",
+                                    "replace_positions": [
+                                        true
+                                    ]
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "lambda(xs)(option(B)(find(T215)(xs)))(T428)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(List(Pair(A)(B))(T428))(if(lambda(xs)(option(B)(find(T215)(xs)))([]))(if(forall(x)(if(Pair(A)(B)(x))(forall(xs)(if(List(Pair(A)(B))(xs))(if(lambda(xs)(option(B)(find(T215)(xs)))(xs))(lambda(xs)(option(B)(find(T215)(xs)))(Cons(x)(xs))))))))(lambda(xs)(option(B)(find(T215)(xs)))(T428))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "List(Pair(A)(B))(T428)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "EqualityJustification",
+                                                    "location_expr_item": "List(Pair(A)(B))(T428)",
+                                                    "location_indeces": [
+
+                                                    ],
+                                                    "replace_with": "AssocList(A)(B)(T428)",
+                                                    "forwards": true
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "AssocList(A)(B)(T428)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "=(AssocList(A)(B)(T428))(List(Pair(A)(B))(T428))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "MatchingJustification",
+                                                            "new_type_name": "???"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(T428)(T428)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ReflexiveJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(AssocList(A)(B))(List(Pair(A)(B)))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(A)(forall(B)(=(AssocList(A)(B))(List(Pair(A)(B)))))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(A)(forall(B)(=(AssocList(A)(B))(List(Pair(A)(B)))))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "lambda(xs)(option(B)(find(T215)(xs)))([])",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "lambda(xs)(option(B)(find(T215)(xs)))([])",
+                                                    "location_indeces": [
+
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "option(B)(find(T215)([]))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "EqualityJustification",
+                                                            "location_expr_item": "option(B)(find(T215)([]))",
+                                                            "location_indeces": [
+                                                                1
+                                                            ],
+                                                            "replace_with": "None",
+                                                            "forwards": false
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "option(B)(None)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(T)(option(T)(None))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(T)(option(T)(None))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(find(T215)([]))(None)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(k)(=(find(k)([]))(None))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(k)(=(find(k)([]))(None))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(x)(if(Pair(A)(B)(x))(forall(xs)(if(List(Pair(A)(B))(xs))(if(lambda(xs)(option(B)(find(T215)(xs)))(xs))(lambda(xs)(option(B)(find(T215)(xs)))(Cons(x)(xs)))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "IntroducedLambdaJustification",
+                                                    "location_expr_item": "forall(x)(if(Pair(A)(B)(x))(forall(xs)(if(List(Pair(A)(B))(xs))(if(lambda(xs)(option(B)(find(T215)(xs)))(xs))(lambda(xs)(option(B)(find(T215)(xs)))(Cons(x)(xs)))))))",
+                                                    "location_indeces": [
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        1,
+                                                        0
+                                                    ]
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(Pair(A)(B)(x))(forall(xs)(if(List(Pair(A)(B))(xs))(if(option(B)(find(T215)(xs)))(lambda(xs)(option(B)(find(T215)(xs)))(Cons(x)(xs)))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "IntroducedLambdaJustification",
+                                                            "location_expr_item": "forall(x)(if(Pair(A)(B)(x))(forall(xs)(if(List(Pair(A)(B))(xs))(if(option(B)(find(T215)(xs)))(lambda(xs)(option(B)(find(T215)(xs)))(Cons(x)(xs)))))))",
+                                                            "location_indeces": [
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1,
+                                                                1
+                                                            ]
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(x)(if(Pair(A)(B)(x))(forall(xs)(if(List(Pair(A)(B))(xs))(if(option(B)(find(T215)(xs)))(option(B)(find(T215)(Cons(x)(xs))))))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 2,
+                                                                    "justification_type": "ImplicationJustification",
+                                                                    "keep_condition_ids": [
+
+                                                                    ],
+                                                                    "keep_definition_ids": [
+
+                                                                    ],
+                                                                    "definition_identifier_names": [
+                                                                        "x",
+                                                                        "xs"
+                                                                    ]
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "option(B)(find(T215)(Cons(x)(xs)))",
+                                                                            "definitions": [
+                                                                                "x",
+                                                                                "xs"
+                                                                            ],
+                                                                            "assumptions": [
+                                                                                "Pair(A)(B)(x)",
+                                                                                "List(Pair(A)(B))(xs)",
+                                                                                "option(B)(find(T215)(xs))"
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "InstantiateJustification",
+                                                                            "new_type": "a",
+                                                                            "existential": "exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b))))))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "option(B)(find(T215)(Cons(x)(xs)))",
+                                                                                    "definitions": [
+                                                                                        "a"
+                                                                                    ],
+                                                                                    "assumptions": [
+                                                                                        "A(a)",
+                                                                                        "exists(b)(and(B(b))(=(x)(pair(a)(b))))"
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "InstantiateJustification",
+                                                                                    "new_type": "b",
+                                                                                    "existential": "exists(b)(and(B(b))(=(x)(pair(a)(b))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "option(B)(find(T215)(Cons(x)(xs)))",
+                                                                                            "definitions": [
+                                                                                                "b"
+                                                                                            ],
+                                                                                            "assumptions": [
+                                                                                                "B(b)",
+                                                                                                "=(x)(pair(a)(b))"
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "EqualityJustification",
+                                                                                            "location_expr_item": "option(B)(find(T215)(Cons(x)(xs)))",
+                                                                                            "location_indeces": [
+                                                                                                1,
+                                                                                                1,
+                                                                                                0
+                                                                                            ],
+                                                                                            "replace_with": "pair(a)(b)",
+                                                                                            "forwards": false
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "option(B)(find(T215)(Cons(pair(a)(b))(xs)))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "CaseSplitJustification",
+                                                                                                    "disjunction": "or(=(T215)(a))(¬(=(T215)(a)))"
+                                                                                                },
+                                                                                                "dependencies": [
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "option(B)(find(T215)(Cons(pair(a)(b))(xs)))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+                                                                                                                "=(T215)(a)"
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "EqualityJustification",
+                                                                                                            "location_expr_item": "option(B)(find(T215)(Cons(pair(a)(b))(xs)))",
+                                                                                                            "location_indeces": [
+                                                                                                                1,
+                                                                                                                0
+                                                                                                            ],
+                                                                                                            "replace_with": "a",
+                                                                                                            "forwards": false
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "option(B)(find(a)(Cons(pair(a)(b))(xs)))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "EqualityJustification",
+                                                                                                                    "location_expr_item": "option(B)(find(a)(Cons(pair(a)(b))(xs)))",
+                                                                                                                    "location_indeces": [
+                                                                                                                        1
+                                                                                                                    ],
+                                                                                                                    "replace_with": "Some(b)",
+                                                                                                                    "forwards": false
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "option(B)(Some(b))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                                                            "implication": "if(B(b))(option(B)(Some(b)))"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "B(b)",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+
+                                                                                                                                ]
+                                                                                                                            },
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "if(B(b))(option(B)(Some(b)))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                                    "general": "forall(T)(forall(T658)(if(T(T658))(option(T)(Some(T658)))))"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+                                                                                                                                    {
+                                                                                                                                        "requirement": {
+                                                                                                                                            "goal": "forall(T)(forall(T658)(if(T(T658))(option(T)(Some(T658)))))",
+                                                                                                                                            "definitions": [
+
+                                                                                                                                            ],
+                                                                                                                                            "assumptions": [
+
+                                                                                                                                            ]
+                                                                                                                                        },
+                                                                                                                                        "justification": {
+                                                                                                                                            "justification_version": 1,
+                                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                                        },
+                                                                                                                                        "dependencies": [
+
+                                                                                                                                        ]
+                                                                                                                                    }
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "=(find(a)(Cons(pair(a)(b))(xs)))(Some(b))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "RefineJustification",
+                                                                                                                            "general": "forall(k)(forall(v)(forall(xs)(=(find(k)(Cons(pair(k)(v))(xs)))(Some(v)))))"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "forall(k)(forall(v)(forall(xs)(=(find(k)(Cons(pair(k)(v))(xs)))(Some(v)))))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "=(T215)(a)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "option(B)(find(T215)(Cons(pair(a)(b))(xs)))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+                                                                                                                "¬(=(T215)(a))"
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "EqualityJustification",
+                                                                                                            "location_expr_item": "option(B)(find(T215)(Cons(pair(a)(b))(xs)))",
+                                                                                                            "location_indeces": [
+                                                                                                                1
+                                                                                                            ],
+                                                                                                            "replace_with": "find(T215)(xs)",
+                                                                                                            "forwards": false
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "option(B)(find(T215)(xs))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "=(find(T215)(Cons(pair(a)(b))(xs)))(find(T215)(xs))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                                                    "implication": "if(¬(=(T215)(a)))(=(find(T215)(Cons(pair(a)(b))(xs)))(find(T215)(xs)))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "¬(=(T215)(a))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "if(¬(=(T215)(a)))(=(find(T215)(Cons(pair(a)(b))(xs)))(find(T215)(xs)))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "RefineJustification",
+                                                                                                                            "general": "forall(k1)(forall(k2)(forall(v)(forall(xs)(if(¬(=(k1)(k2)))(=(find(k1)(Cons(pair(k2)(v))(xs)))(find(k1)(xs)))))))"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+                                                                                                                            {
+                                                                                                                                "requirement": {
+                                                                                                                                    "goal": "forall(k1)(forall(k2)(forall(v)(forall(xs)(if(¬(=(k1)(k2)))(=(find(k1)(Cons(pair(k2)(v))(xs)))(find(k1)(xs)))))))",
+                                                                                                                                    "definitions": [
+
+                                                                                                                                    ],
+                                                                                                                                    "assumptions": [
+
+                                                                                                                                    ]
+                                                                                                                                },
+                                                                                                                                "justification": {
+                                                                                                                                    "justification_version": 1,
+                                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                                },
+                                                                                                                                "dependencies": [
+
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "requirement": {
+                                                                                                            "goal": "or(=(T215)(a))(¬(=(T215)(a)))",
+                                                                                                            "definitions": [
+
+                                                                                                            ],
+                                                                                                            "assumptions": [
+
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        "justification": {
+                                                                                                            "justification_version": 1,
+                                                                                                            "justification_type": "ModusPonensJustification",
+                                                                                                            "implication": "if(DecEq(A))(if(A(T215))(if(A(a))(or(=(T215)(a))(¬(=(T215)(a))))))"
+                                                                                                        },
+                                                                                                        "dependencies": [
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "DecEq(A)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "A(T215)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "A(a)",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                                },
+                                                                                                                "dependencies": [
+
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "requirement": {
+                                                                                                                    "goal": "if(DecEq(A))(if(A(T215))(if(A(a))(or(=(T215)(a))(¬(=(T215)(a))))))",
+                                                                                                                    "definitions": [
+
+                                                                                                                    ],
+                                                                                                                    "assumptions": [
+
+                                                                                                                    ]
+                                                                                                                },
+                                                                                                                "justification": {
+                                                                                                                    "justification_version": 1,
+                                                                                                                    "justification_type": "RefineJustification",
+                                                                                                                    "general": "forall(S)(if(DecEq(S))(forall(x)(if(S(x))(forall(y)(if(S(y))(or(=(x)(y))(¬(=(x)(y)))))))))"
+                                                                                                                },
+                                                                                                                "dependencies": [
+                                                                                                                    {
+                                                                                                                        "requirement": {
+                                                                                                                            "goal": "forall(S)(if(DecEq(S))(forall(x)(if(S(x))(forall(y)(if(S(y))(or(=(x)(y))(¬(=(x)(y)))))))))",
+                                                                                                                            "definitions": [
+
+                                                                                                                            ],
+                                                                                                                            "assumptions": [
+
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        "justification": {
+                                                                                                                            "justification_version": 1,
+                                                                                                                            "justification_type": "AssumptionJustification"
+                                                                                                                        },
+                                                                                                                        "dependencies": [
+
+                                                                                                                        ]
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "=(x)(pair(a)(b))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "exists(b)(and(B(b))(=(x)(pair(a)(b))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b))))))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "ModusPonensJustification",
+                                                                                    "implication": "if(Pair(A)(B)(x))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b)))))))"
+                                                                                },
+                                                                                "dependencies": [
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "Pair(A)(B)(x)",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "AssumptionJustification"
+                                                                                        },
+                                                                                        "dependencies": [
+
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "requirement": {
+                                                                                            "goal": "if(Pair(A)(B)(x))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b)))))))",
+                                                                                            "definitions": [
+
+                                                                                            ],
+                                                                                            "assumptions": [
+
+                                                                                            ]
+                                                                                        },
+                                                                                        "justification": {
+                                                                                            "justification_version": 1,
+                                                                                            "justification_type": "RefineJustification",
+                                                                                            "general": "forall(A)(forall(B)(forall(x)(if(Pair(A)(B)(x))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b))))))))))"
+                                                                                        },
+                                                                                        "dependencies": [
+                                                                                            {
+                                                                                                "requirement": {
+                                                                                                    "goal": "forall(A)(forall(B)(forall(x)(if(Pair(A)(B)(x))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b))))))))))",
+                                                                                                    "definitions": [
+
+                                                                                                    ],
+                                                                                                    "assumptions": [
+
+                                                                                                    ]
+                                                                                                },
+                                                                                                "justification": {
+                                                                                                    "justification_version": 1,
+                                                                                                    "justification_type": "AssumptionJustification"
+                                                                                                },
+                                                                                                "dependencies": [
+
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(List(Pair(A)(B))(T428))(if(lambda(xs)(option(B)(find(T215)(xs)))([]))(if(forall(x)(if(Pair(A)(B)(x))(forall(xs)(if(List(Pair(A)(B))(xs))(if(lambda(xs)(option(B)(find(T215)(xs)))(xs))(lambda(xs)(option(B)(find(T215)(xs)))(Cons(x)(xs))))))))(lambda(xs)(option(B)(find(T215)(xs)))(T428))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(T)(forall(l)(if(List(T)(l))(forall(P)(if(P([]))(if(forall(x)(if(T(x))(forall(xs)(if(List(T)(xs))(if(P(xs))(P(Cons(x)(xs))))))))(P(l)))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "version": 30
+}

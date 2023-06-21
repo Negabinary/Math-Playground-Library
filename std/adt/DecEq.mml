@@ -1,0 +1,20 @@
+{
+    "cells": [
+        {
+            "string": "define DecEq\nassume forall S : DecEq. forall x y : S. x = y or ¬(x = y)",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "DecEq"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(S)(if(DecEq(S))(forall(x)(if(S(x))(forall(y)(if(S(y))(or(=(x)(y))(¬(=(x)(y)))))))))"
+                }
+            ]
+        }
+    ],
+    "version": 30
+}
