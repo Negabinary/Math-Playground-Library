@@ -15895,7 +15895,24 @@
                                                                             "general": "forall(x)(if(Nat(x))(forall(y)(if(Nat(y))(if(and(<=(x)(y))(<=(y)(x)))(=(x)(y))))))"
                                                                         },
                                                                         "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "forall(x)(if(Nat(x))(forall(y)(if(Nat(y))(if(and(<=(x)(y))(<=(y)(x)))(=(x)(y))))))",
+                                                                                    "definitions": [
 
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "AssumptionJustification"
+                                                                                },
+                                                                                "dependencies": [
+
+                                                                                ]
+                                                                            }
                                                                         ]
                                                                     }
                                                                 ]
@@ -16399,7 +16416,7 @@
             ]
         },
         {
-            "string": "define 1 as S(0)\ndefine 2 as S(S(0))\ndefine 3 as S(S(S(0)))\ndefine 4 as S(S(S(S(0))))\ndefine 5 as S(S(S(S(S(0)))))",
+            "string": "define 1 as S(0)\nshow 1 : Nat\ndefine 2 as S(S(0))\nshow 2 : Nat\ndefine 3 as S(S(S(0)))\nshow 3 : Nat\ndefine 4 as S(S(S(S(0))))\nshow 4 : Nat\ndefine 5 as S(S(S(S(S(0)))))\nshow 5 : Nat",
             "compiled": true,
             "title": "Small Numbers",
             "items": [
@@ -16412,12 +16429,300 @@
                     "expr": "=(1)(S(0))"
                 },
                 {
+                    "kind": "theorem",
+                    "expr": "Nat(1)",
+                    "proof": {
+                        "requirement": {
+                            "goal": "Nat(1)",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "EqualityJustification",
+                            "location_expr_item": "Nat(1)",
+                            "location_indeces": [
+                                0
+                            ],
+                            "replace_with": "S(0)",
+                            "forwards": false
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "Nat(S(0))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "ModusPonensJustification",
+                                    "implication": "if(Nat(0))(Nat(S(0)))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "Nat(0)",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "AssumptionJustification"
+                                        },
+                                        "dependencies": [
+
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "if(Nat(0))(Nat(S(0)))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "RefineJustification",
+                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "requirement": {
+                                    "goal": "=(1)(S(0))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "AssumptionJustification"
+                                },
+                                "dependencies": [
+
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
                     "kind": "definition",
                     "type": "2"
                 },
                 {
                     "kind": "assumption",
                     "expr": "=(2)(S(S(0)))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "Nat(2)",
+                    "proof": {
+                        "requirement": {
+                            "goal": "Nat(2)",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "EqualityJustification",
+                            "location_expr_item": "Nat(2)",
+                            "location_indeces": [
+                                0
+                            ],
+                            "replace_with": "S(S(0))",
+                            "forwards": false
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "Nat(S(S(0)))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "ModusPonensJustification",
+                                    "implication": "if(Nat(S(0)))(Nat(S(S(0))))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "Nat(S(0))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(Nat(0))(Nat(S(0)))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "Nat(0)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(Nat(0))(Nat(S(0)))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "if(Nat(S(0)))(Nat(S(S(0))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "RefineJustification",
+                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "requirement": {
+                                    "goal": "=(2)(S(S(0)))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "AssumptionJustification"
+                                },
+                                "dependencies": [
+
+                                ]
+                            }
+                        ]
+                    }
                 },
                 {
                     "kind": "definition",
@@ -16428,6 +16733,231 @@
                     "expr": "=(3)(S(S(S(0))))"
                 },
                 {
+                    "kind": "theorem",
+                    "expr": "Nat(3)",
+                    "proof": {
+                        "requirement": {
+                            "goal": "Nat(3)",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "EqualityJustification",
+                            "location_expr_item": "Nat(3)",
+                            "location_indeces": [
+                                0
+                            ],
+                            "replace_with": "S(S(S(0)))",
+                            "forwards": false
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "Nat(S(S(S(0))))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "ModusPonensJustification",
+                                    "implication": "if(Nat(S(S(0))))(Nat(S(S(S(0)))))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "Nat(S(S(0)))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(Nat(S(0)))(Nat(S(S(0))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "Nat(S(0))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "ModusPonensJustification",
+                                                    "implication": "if(Nat(0))(Nat(S(0)))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "Nat(0)",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "if(Nat(0))(Nat(S(0)))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(Nat(S(0)))(Nat(S(S(0))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "if(Nat(S(S(0))))(Nat(S(S(S(0)))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "RefineJustification",
+                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "requirement": {
+                                    "goal": "=(3)(S(S(S(0))))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "AssumptionJustification"
+                                },
+                                "dependencies": [
+
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
                     "kind": "definition",
                     "type": "4"
                 },
@@ -16436,12 +16966,624 @@
                     "expr": "=(4)(S(S(S(S(0)))))"
                 },
                 {
+                    "kind": "theorem",
+                    "expr": "Nat(4)",
+                    "proof": {
+                        "requirement": {
+                            "goal": "Nat(4)",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "EqualityJustification",
+                            "location_expr_item": "Nat(4)",
+                            "location_indeces": [
+                                0
+                            ],
+                            "replace_with": "S(S(S(S(0))))",
+                            "forwards": false
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "Nat(S(S(S(S(0)))))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "ModusPonensJustification",
+                                    "implication": "if(Nat(S(S(S(0)))))(Nat(S(S(S(S(0))))))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "Nat(S(S(S(0))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(Nat(S(S(0))))(Nat(S(S(S(0)))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "Nat(S(S(0)))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "ModusPonensJustification",
+                                                    "implication": "if(Nat(S(0)))(Nat(S(S(0))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "Nat(S(0))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "ModusPonensJustification",
+                                                            "implication": "if(Nat(0))(Nat(S(0)))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "Nat(0)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "if(Nat(0))(Nat(S(0)))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "if(Nat(S(0)))(Nat(S(S(0))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(Nat(S(S(0))))(Nat(S(S(S(0)))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "if(Nat(S(S(S(0)))))(Nat(S(S(S(S(0))))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "RefineJustification",
+                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "requirement": {
+                                    "goal": "=(4)(S(S(S(S(0)))))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "AssumptionJustification"
+                                },
+                                "dependencies": [
+
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
                     "kind": "definition",
                     "type": "5"
                 },
                 {
                     "kind": "assumption",
                     "expr": "=(5)(S(S(S(S(S(0))))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "Nat(5)",
+                    "proof": {
+                        "requirement": {
+                            "goal": "Nat(5)",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "EqualityJustification",
+                            "location_expr_item": "Nat(5)",
+                            "location_indeces": [
+                                0
+                            ],
+                            "replace_with": "S(S(S(S(S(0)))))",
+                            "forwards": false
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "Nat(S(S(S(S(S(0))))))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "ModusPonensJustification",
+                                    "implication": "if(Nat(S(S(S(S(0))))))(Nat(S(S(S(S(S(0)))))))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "Nat(S(S(S(S(0)))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(Nat(S(S(S(0)))))(Nat(S(S(S(S(0))))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "Nat(S(S(S(0))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "ModusPonensJustification",
+                                                    "implication": "if(Nat(S(S(0))))(Nat(S(S(S(0)))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "Nat(S(S(0)))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "ModusPonensJustification",
+                                                            "implication": "if(Nat(S(0)))(Nat(S(S(0))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "Nat(S(0))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "ModusPonensJustification",
+                                                                    "implication": "if(Nat(0))(Nat(S(0)))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "Nat(0)",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "if(Nat(0))(Nat(S(0)))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "RefineJustification",
+                                                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                                        },
+                                                                        "dependencies": [
+                                                                            {
+                                                                                "requirement": {
+                                                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                                                    "definitions": [
+
+                                                                                    ],
+                                                                                    "assumptions": [
+
+                                                                                    ]
+                                                                                },
+                                                                                "justification": {
+                                                                                    "justification_version": 1,
+                                                                                    "justification_type": "AssumptionJustification"
+                                                                                },
+                                                                                "dependencies": [
+
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "if(Nat(S(0)))(Nat(S(S(0))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "if(Nat(S(S(0))))(Nat(S(S(S(0)))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "RefineJustification",
+                                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(Nat(S(S(S(0)))))(Nat(S(S(S(S(0))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "if(Nat(S(S(S(S(0))))))(Nat(S(S(S(S(S(0)))))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "RefineJustification",
+                                            "general": "forall(T658)(if(Nat(T658))(Nat(S(T658))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "forall(T658)(if(Nat(T658))(Nat(S(T658))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "requirement": {
+                                    "goal": "=(5)(S(S(S(S(S(0))))))",
+                                    "definitions": [
+
+                                    ],
+                                    "assumptions": [
+
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "AssumptionJustification"
+                                },
+                                "dependencies": [
+
+                                ]
+                            }
+                        ]
+                    }
                 }
             ]
         }
