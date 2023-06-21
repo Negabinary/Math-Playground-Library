@@ -1,7 +1,7 @@
 {
     "cells": [
         {
-            "string": "import std.arith.peano\nimport std.adt.list\nimport std.adt.option",
+            "string": "import std.arith.peano\nimport std.adt.list\nimport std.adt.option\nimport std.adt.assoclist",
             "compiled": true,
             "title": "Imports",
             "items": [
@@ -18,6 +18,11 @@
                 {
                     "kind": "import",
                     "module": "std.adt.option",
+                    "namespace": false
+                },
+                {
+                    "kind": "import",
+                    "module": "std.adt.assoclist",
                     "namespace": false
                 }
             ]
@@ -54,6 +59,37 @@
             ]
         },
         {
+            "string": "define 0expr n as expr n []\ndefine 1expr n c as expr n Cons(c,[])\ndefine 2expr n c d as expr n Cons(c,Cons(d,[]))",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "0expr"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(n)(=(0expr(n))(expr(n)([])))"
+                },
+                {
+                    "kind": "definition",
+                    "type": "1expr"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(n)(forall(c)(=(1expr(n)(c))(expr(n)(Cons)(c)([]))))"
+                },
+                {
+                    "kind": "definition",
+                    "type": "2expr"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(n)(forall(c)(forall(d)(=(2expr(n)(c)(d))(expr(n)(Cons)(c)(Cons(d)([]))))))"
+                }
+            ]
+        },
+        {
             "string": "define Requirement\ndefine Literal\ndefine requirement : Expr -> List Literal -> List Expr -> Requirement\nassume forall x. Requirement x = (exists g d a. (x = requirement g d a))\ndefine Justification",
             "compiled": true,
             "title": "Justifications",
@@ -85,17 +121,17 @@
             ]
         },
         {
-            "string": "define all : Literal\ndefine intro_forall\nassume forall l : Literal, e : Expr.\n\tintro_forall l (expr all (Cons(lam e,[]))) = requirement(\n\t\te,\n\t\tCons(l,[]),\n\t\t[]\n\t)\n\ndefine test : Literal\ndefine f : Literal\nshow intro_forall test (expr all (Cons(lam (expr 1 []),[])))",
+            "string": "define \"forall\" : Literal\ndefine intro_forall\nassume forall l : Literal, e : Expr.\n\tintro_forall l (expr \"forall\" (Cons(lam e,[]))) = requirement(\n\t\te,\n\t\tCons(l,[]),\n\t\t[]\n\t)",
             "compiled": true,
             "title": "Basic Justifications",
             "items": [
                 {
                     "kind": "definition",
-                    "type": "all"
+                    "type": "\"forall\""
                 },
                 {
                     "kind": "assumption",
-                    "expr": "Literal(all)"
+                    "expr": "Literal(\"forall\")"
                 },
                 {
                     "kind": "definition",
@@ -103,30 +139,79 @@
                 },
                 {
                     "kind": "assumption",
-                    "expr": "forall(l)(if(Literal(l))(forall(e)(if(Expr(e))(=(intro_forall(l)(expr(all)(Cons(lam(e))([]))))(requirement(e)(Cons(l)([]))([]))))))"
-                },
+                    "expr": "forall(l)(if(Literal(l))(forall(e)(if(Expr(e))(=(intro_forall(l)(expr(\"forall\")(Cons(lam(e))([]))))(requirement(e)(Cons(l)([]))([]))))))"
+                }
+            ]
+        },
+        {
+            "string": "define \"if\"",
+            "compiled": true,
+            "title": "",
+            "items": [
                 {
                     "kind": "definition",
-                    "type": "test"
+                    "type": "\"if\""
+                }
+            ]
+        },
+        {
+            "string": "define JMap as AssocList Expr Justification\ndefine ProofBox\ndefine proof_box : JMap -> AssocList (Pair Nat (List Expr)) ProofBox -> ProofBox\nassume forall x : ProofBox. exists jm : JMap, nm : (AssocList (Pair Nat (List Expr)) ProofBox). x = proof_box jm nm",
+            "compiled": true,
+            "title": "Proof Boxes",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "JMap"
                 },
                 {
                     "kind": "assumption",
-                    "expr": "Literal(test)"
+                    "expr": "=(JMap)(AssocList(Expr)(Justification))"
                 },
                 {
                     "kind": "definition",
-                    "type": "f"
+                    "type": "ProofBox"
+                },
+                {
+                    "kind": "definition",
+                    "type": "proof_box"
                 },
                 {
                     "kind": "assumption",
-                    "expr": "Literal(f)"
+                    "expr": "forall(T466)(if(JMap(T466))(forall(T381)(if(AssocList(Pair(Nat)(List(Expr)))(ProofBox)(T381))(ProofBox(proof_box(T466)(T381))))))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(x)(if(ProofBox(x))(exists(jm)(and(JMap(jm))(exists(nm)(and(AssocList(Pair(Nat)(List(Expr)))(ProofBox)(nm))(=(x)(proof_box(jm)(nm))))))))"
+                }
+            ]
+        },
+        {
+            "string": "define judg \n\ndefine A\ndefine P\ndefine y\nshow \n\tif \n\t\tforall x. \n\t\t\tif \n\t\t\t\tP x \n\t\t\tthen \n\t\t\t\tA \n\tthen \n\t\tif \n\t\t\tP y \n\t\tthen \n\t\t\tA\n\ndefine \"A\" : Literal\ndefine \"P\" : Literal\ndefine \"x\" : Literal\ndefine \"y\" : Literal\n\ndefine target as \n\t2expr 4 (\n\t\t1expr 3 (\n\t\t\t2expr 5 (\n\t\t\t\t1expr 2 (\n\t\t\t\t\t0expr 0\n\t\t\t\t)\n\t\t\t) (\n\t\t\t\t1expr 3\n\t\t\t)\n\t\t)\n\t) (\n\t\t2expr 4 (\n\t\t\t1expr 1 (\n\t\t\t\t0expr 0\n\t\t\t)\n\t\t) (\n\t\t\t0expr 2\n\t\t)\n\t)\n\nshow judg (\n\tCons(\"y\",Cons(\"P\",Cons(\"A\",Cons(\"forall\",Cons(\"if\",[]))))),\n\t[],\n\tproof_box (\n\t\tCons(\n\t\t\tpair target intro_forall\n\t\t,[]),\n\t\tCons(\n\t\t\tpair (pair 1 [])  (\n\t\t\t\tproof_box (\n\t\t\t\t\t[]\n\t\t\t\t) (\n\t\t\t\t\t[]\n\t\t\t\t)\n\t\t\t)\n\t\t)\n\t),\n\ttarget\n)",
+            "compiled": true,
+            "title": "Judgements",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "judg"
+                },
+                {
+                    "kind": "definition",
+                    "type": "A"
+                },
+                {
+                    "kind": "definition",
+                    "type": "P"
+                },
+                {
+                    "kind": "definition",
+                    "type": "y"
                 },
                 {
                     "kind": "theorem",
-                    "expr": "intro_forall(test)(expr(all)(Cons(lam(expr(1)([])))([])))",
+                    "expr": "if(forall(x)(if(P(x))(A)))(if(P(y))(A))",
                     "proof": {
                         "requirement": {
-                            "goal": "intro_forall(test)(expr(all)(Cons(lam(expr(1)([])))([])))",
+                            "goal": "if(forall(x)(if(P(x))(A)))(if(P(y))(A))",
                             "definitions": [
 
                             ],
@@ -136,52 +221,35 @@
                         },
                         "justification": {
                             "justification_version": 1,
-                            "justification_type": "EqualityJustification",
-                            "location_expr_item": "intro_forall(test)(expr(all)(Cons(lam(expr(1)([])))([])))",
-                            "location_indeces": [
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
 
                             ],
-                            "replace_with": "requirement(expr(1)([]))(Cons(test)([]))([])",
-                            "forwards": false
+                            "keep_definition_ids": [
+
+                            ]
                         },
                         "dependencies": [
                             {
                                 "requirement": {
-                                    "goal": "requirement(expr(1)([]))(Cons(test)([]))([])",
+                                    "goal": "A",
                                     "definitions": [
 
                                     ],
                                     "assumptions": [
-
-                                    ]
-                                },
-                                "justification": {
-                                    "justification_version": 1,
-                                    "justification_type": "MissingJustification"
-                                },
-                                "dependencies": [
-
-                                ]
-                            },
-                            {
-                                "requirement": {
-                                    "goal": "=(intro_forall(test)(expr(all)(Cons(lam(expr(1)([])))([]))))(requirement(expr(1)([]))(Cons(test)([]))([]))",
-                                    "definitions": [
-
-                                    ],
-                                    "assumptions": [
-
+                                        "forall(x)(if(P(x))(A))",
+                                        "P(y)"
                                     ]
                                 },
                                 "justification": {
                                     "justification_version": 1,
                                     "justification_type": "ModusPonensJustification",
-                                    "implication": "if(Literal(test))(if(Expr(expr(1)([])))(=(intro_forall(test)(expr(all)(Cons(lam(expr(1)([])))([]))))(requirement(expr(1)([]))(Cons(test)([]))([]))))"
+                                    "implication": "if(P(y))(A)"
                                 },
                                 "dependencies": [
                                     {
                                         "requirement": {
-                                            "goal": "Literal(test)",
+                                            "goal": "P(y)",
                                             "definitions": [
 
                                             ],
@@ -199,115 +267,7 @@
                                     },
                                     {
                                         "requirement": {
-                                            "goal": "Expr(expr(1)([]))",
-                                            "definitions": [
-
-                                            ],
-                                            "assumptions": [
-
-                                            ]
-                                        },
-                                        "justification": {
-                                            "justification_version": 1,
-                                            "justification_type": "ModusPonensJustification",
-                                            "implication": "if(Nat(1))(if(List(Expr)([]))(Expr(expr(1)([]))))"
-                                        },
-                                        "dependencies": [
-                                            {
-                                                "requirement": {
-                                                    "goal": "Nat(1)",
-                                                    "definitions": [
-
-                                                    ],
-                                                    "assumptions": [
-
-                                                    ]
-                                                },
-                                                "justification": {
-                                                    "justification_version": 1,
-                                                    "justification_type": "AssumptionJustification"
-                                                },
-                                                "dependencies": [
-
-                                                ]
-                                            },
-                                            {
-                                                "requirement": {
-                                                    "goal": "List(Expr)([])",
-                                                    "definitions": [
-
-                                                    ],
-                                                    "assumptions": [
-
-                                                    ]
-                                                },
-                                                "justification": {
-                                                    "justification_version": 1,
-                                                    "justification_type": "RefineJustification",
-                                                    "general": "forall(T)(List(T)([]))"
-                                                },
-                                                "dependencies": [
-                                                    {
-                                                        "requirement": {
-                                                            "goal": "forall(T)(List(T)([]))",
-                                                            "definitions": [
-
-                                                            ],
-                                                            "assumptions": [
-
-                                                            ]
-                                                        },
-                                                        "justification": {
-                                                            "justification_version": 1,
-                                                            "justification_type": "AssumptionJustification"
-                                                        },
-                                                        "dependencies": [
-
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "requirement": {
-                                                    "goal": "if(Nat(1))(if(List(Expr)([]))(Expr(expr(1)([]))))",
-                                                    "definitions": [
-
-                                                    ],
-                                                    "assumptions": [
-
-                                                    ]
-                                                },
-                                                "justification": {
-                                                    "justification_version": 1,
-                                                    "justification_type": "RefineJustification",
-                                                    "general": "forall(T215)(if(Nat(T215))(forall(T428)(if(List(Expr)(T428))(Expr(expr(T215)(T428))))))"
-                                                },
-                                                "dependencies": [
-                                                    {
-                                                        "requirement": {
-                                                            "goal": "forall(T215)(if(Nat(T215))(forall(T428)(if(List(Expr)(T428))(Expr(expr(T215)(T428))))))",
-                                                            "definitions": [
-
-                                                            ],
-                                                            "assumptions": [
-
-                                                            ]
-                                                        },
-                                                        "justification": {
-                                                            "justification_version": 1,
-                                                            "justification_type": "AssumptionJustification"
-                                                        },
-                                                        "dependencies": [
-
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "requirement": {
-                                            "goal": "if(Literal(test))(if(Expr(expr(1)([])))(=(intro_forall(test)(expr(all)(Cons(lam(expr(1)([])))([]))))(requirement(expr(1)([]))(Cons(test)([]))([]))))",
+                                            "goal": "if(P(y))(A)",
                                             "definitions": [
 
                                             ],
@@ -318,12 +278,12 @@
                                         "justification": {
                                             "justification_version": 1,
                                             "justification_type": "RefineJustification",
-                                            "general": "forall(l)(if(Literal(l))(forall(e)(if(Expr(e))(=(intro_forall(l)(expr(all)(Cons(lam(e))([]))))(requirement(e)(Cons(l)([]))([]))))))"
+                                            "general": "forall(x)(if(P(x))(A))"
                                         },
                                         "dependencies": [
                                             {
                                                 "requirement": {
-                                                    "goal": "forall(l)(if(Literal(l))(forall(e)(if(Expr(e))(=(intro_forall(l)(expr(all)(Cons(lam(e))([]))))(requirement(e)(Cons(l)([]))([]))))))",
+                                                    "goal": "forall(x)(if(P(x))(A))",
                                                     "definitions": [
 
                                                     ],
@@ -345,13 +305,70 @@
                             }
                         ]
                     }
+                },
+                {
+                    "kind": "definition",
+                    "type": "\"A\""
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "Literal(\"A\")"
+                },
+                {
+                    "kind": "definition",
+                    "type": "\"P\""
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "Literal(\"P\")"
+                },
+                {
+                    "kind": "definition",
+                    "type": "\"x\""
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "Literal(\"x\")"
+                },
+                {
+                    "kind": "definition",
+                    "type": "\"y\""
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "Literal(\"y\")"
+                },
+                {
+                    "kind": "definition",
+                    "type": "target"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "=(target)(2expr(4)(1expr(3)(2expr(5)(1expr(2)(0expr(0)))(1expr(3))))(2expr(4)(1expr(1)(0expr(0)))(0expr(2))))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "judg(Cons(\"y\")(Cons(\"P\")(Cons(\"A\")(Cons(\"forall\")(Cons(\"if\")([]))))))([])(proof_box(Cons(pair(target)(intro_forall))([]))(Cons(pair(pair(1)([]))(proof_box([])([])))))(target)",
+                    "proof": {
+                        "requirement": {
+                            "goal": "judg(Cons(\"y\")(Cons(\"P\")(Cons(\"A\")(Cons(\"forall\")(Cons(\"if\")([]))))))([])(proof_box(Cons(pair(target)(intro_forall))([]))(Cons(pair(pair(1)([]))(proof_box([])([])))))(target)",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 1,
+                            "justification_type": "MissingJustification"
+                        },
+                        "dependencies": [
+
+                        ]
+                    }
                 }
             ]
-        },
-        {
-            "string": "",
-            "compiled": false,
-            "title": "Contexts"
         }
     ],
     "version": 30
