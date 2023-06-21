@@ -1,0 +1,617 @@
+{
+    "cells": [
+        {
+            "string": "define Pair\ndefine pair: forall A B. A -> B -> Pair A B\nassume forall A B x. if Pair A B x then exists a:A, b:B. x = pair a b",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "Pair"
+                },
+                {
+                    "kind": "definition",
+                    "type": "pair"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(B)(forall(A)(forall(T523)(if(A(T523))(forall(T693)(if(B(T693))(Pair(A)(B)(pair(T523)(T693))))))))"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(A)(forall(B)(forall(x)(if(Pair(A)(B)(x))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b))))))))))"
+                }
+            ]
+        },
+        {
+            "string": "define fst\nassume forall x y. fst (pair x y) = x\nshow fst : forall A B. Pair A B -> A\n\ndefine snd\nassume forall x y. snd (pair x y) = y\nshow snd : forall A B. Pair A B -> B",
+            "compiled": true,
+            "title": "",
+            "items": [
+                {
+                    "kind": "definition",
+                    "type": "fst"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(x)(forall(y)(=(fst(pair(x)(y)))(x)))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(B)(forall(A)(forall(T658)(if(Pair(A)(B)(T658))(A(fst(T658))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(B)(forall(A)(forall(T658)(if(Pair(A)(B)(T658))(A(fst(T658))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "B",
+                                "A",
+                                "T658"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "A(fst(T658))",
+                                    "definitions": [
+                                        "B",
+                                        "A",
+                                        "T658"
+                                    ],
+                                    "assumptions": [
+                                        "Pair(A)(B)(T658)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "InstantiateJustification",
+                                    "new_type": "a",
+                                    "existential": "exists(a)(and(A(a))(exists(b)(and(B(b))(=(T658)(pair(a)(b))))))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "A(fst(T658))",
+                                            "definitions": [
+                                                "a"
+                                            ],
+                                            "assumptions": [
+                                                "A(a)",
+                                                "exists(b)(and(B(b))(=(T658)(pair(a)(b))))"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "InstantiateJustification",
+                                            "new_type": "b",
+                                            "existential": "exists(b)(and(B(b))(=(T658)(pair(a)(b))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "A(fst(T658))",
+                                                    "definitions": [
+                                                        "b"
+                                                    ],
+                                                    "assumptions": [
+                                                        "B(b)",
+                                                        "=(T658)(pair(a)(b))"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "EqualityJustification",
+                                                    "location_expr_item": "A(fst(T658))",
+                                                    "location_indeces": [
+                                                        0,
+                                                        0
+                                                    ],
+                                                    "replace_with": "pair(a)(b)",
+                                                    "forwards": false
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "A(fst(pair(a)(b)))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "EqualityJustification",
+                                                            "location_expr_item": "A(fst(pair(a)(b)))",
+                                                            "location_indeces": [
+                                                                0
+                                                            ],
+                                                            "replace_with": "a",
+                                                            "forwards": false
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "A(a)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(fst(pair(a)(b)))(a)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(x)(forall(y)(=(fst(pair(x)(y)))(x)))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(x)(forall(y)(=(fst(pair(x)(y)))(x)))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "=(T658)(pair(a)(b))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "exists(b)(and(B(b))(=(T658)(pair(a)(b))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "exists(a)(and(A(a))(exists(b)(and(B(b))(=(T658)(pair(a)(b))))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(Pair(A)(B)(T658))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(T658)(pair(a)(b)))))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "Pair(A)(B)(T658)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(Pair(A)(B)(T658))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(T658)(pair(a)(b)))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(A)(forall(B)(forall(x)(if(Pair(A)(B)(x))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b))))))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(A)(forall(B)(forall(x)(if(Pair(A)(B)(x))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b))))))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "kind": "definition",
+                    "type": "snd"
+                },
+                {
+                    "kind": "assumption",
+                    "expr": "forall(x)(forall(y)(=(snd(pair(x)(y)))(y)))"
+                },
+                {
+                    "kind": "theorem",
+                    "expr": "forall(B)(forall(A)(forall(T779)(if(Pair(A)(B)(T779))(B(snd(T779))))))",
+                    "proof": {
+                        "requirement": {
+                            "goal": "forall(B)(forall(A)(forall(T779)(if(Pair(A)(B)(T779))(B(snd(T779))))))",
+                            "definitions": [
+
+                            ],
+                            "assumptions": [
+
+                            ]
+                        },
+                        "justification": {
+                            "justification_version": 2,
+                            "justification_type": "ImplicationJustification",
+                            "keep_condition_ids": [
+
+                            ],
+                            "keep_definition_ids": [
+
+                            ],
+                            "definition_identifier_names": [
+                                "B",
+                                "A",
+                                "T779"
+                            ]
+                        },
+                        "dependencies": [
+                            {
+                                "requirement": {
+                                    "goal": "B(snd(T779))",
+                                    "definitions": [
+                                        "B",
+                                        "A",
+                                        "T779"
+                                    ],
+                                    "assumptions": [
+                                        "Pair(A)(B)(T779)"
+                                    ]
+                                },
+                                "justification": {
+                                    "justification_version": 1,
+                                    "justification_type": "InstantiateJustification",
+                                    "new_type": "a",
+                                    "existential": "exists(a)(and(A(a))(exists(b)(and(B(b))(=(T779)(pair(a)(b))))))"
+                                },
+                                "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "B(snd(T779))",
+                                            "definitions": [
+                                                "a"
+                                            ],
+                                            "assumptions": [
+                                                "A(a)",
+                                                "exists(b)(and(B(b))(=(T779)(pair(a)(b))))"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "InstantiateJustification",
+                                            "new_type": "b",
+                                            "existential": "exists(b)(and(B(b))(=(T779)(pair(a)(b))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "B(snd(T779))",
+                                                    "definitions": [
+                                                        "b"
+                                                    ],
+                                                    "assumptions": [
+                                                        "B(b)",
+                                                        "=(T779)(pair(a)(b))"
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "EqualityJustification",
+                                                    "location_expr_item": "B(snd(T779))",
+                                                    "location_indeces": [
+                                                        0,
+                                                        0
+                                                    ],
+                                                    "replace_with": "pair(a)(b)",
+                                                    "forwards": false
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "B(snd(pair(a)(b)))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "EqualityJustification",
+                                                            "location_expr_item": "B(snd(pair(a)(b)))",
+                                                            "location_indeces": [
+                                                                0
+                                                            ],
+                                                            "replace_with": "b",
+                                                            "forwards": false
+                                                        },
+                                                        "dependencies": [
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "B(b)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "AssumptionJustification"
+                                                                },
+                                                                "dependencies": [
+
+                                                                ]
+                                                            },
+                                                            {
+                                                                "requirement": {
+                                                                    "goal": "=(snd(pair(a)(b)))(b)",
+                                                                    "definitions": [
+
+                                                                    ],
+                                                                    "assumptions": [
+
+                                                                    ]
+                                                                },
+                                                                "justification": {
+                                                                    "justification_version": 1,
+                                                                    "justification_type": "RefineJustification",
+                                                                    "general": "forall(x)(forall(y)(=(snd(pair(x)(y)))(y)))"
+                                                                },
+                                                                "dependencies": [
+                                                                    {
+                                                                        "requirement": {
+                                                                            "goal": "forall(x)(forall(y)(=(snd(pair(x)(y)))(y)))",
+                                                                            "definitions": [
+
+                                                                            ],
+                                                                            "assumptions": [
+
+                                                                            ]
+                                                                        },
+                                                                        "justification": {
+                                                                            "justification_version": 1,
+                                                                            "justification_type": "AssumptionJustification"
+                                                                        },
+                                                                        "dependencies": [
+
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "=(T779)(pair(a)(b))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "exists(b)(and(B(b))(=(T779)(pair(a)(b))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "exists(a)(and(A(a))(exists(b)(and(B(b))(=(T779)(pair(a)(b))))))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(Pair(A)(B)(T779))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(T779)(pair(a)(b)))))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "Pair(A)(B)(T779)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(Pair(A)(B)(T779))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(T779)(pair(a)(b)))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(A)(forall(B)(forall(x)(if(Pair(A)(B)(x))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b))))))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(A)(forall(B)(forall(x)(if(Pair(A)(B)(x))(exists(a)(and(A(a))(exists(b)(and(B(b))(=(x)(pair(a)(b))))))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "version": 30
+}
