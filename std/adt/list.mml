@@ -3140,10 +3140,280 @@
                                 },
                                 "justification": {
                                     "justification_version": 1,
-                                    "justification_type": "MissingJustification"
+                                    "justification_type": "CaseSplitJustification",
+                                    "disjunction": "or(=(x)(x'))(¬(=(x)(x')))"
                                 },
                                 "dependencies": [
+                                    {
+                                        "requirement": {
+                                            "goal": "bool(=(x)(x'))",
+                                            "definitions": [
 
+                                            ],
+                                            "assumptions": [
+                                                "=(x)(x')"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(=(x)(x'))(bool(=(x)(x')))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "=(x)(x')",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(=(x)(x'))(bool(=(x)(x')))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(x)(if(x)(bool(x)))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(x)(bool(x)))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "bool(=(x)(x'))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+                                                "¬(=(x)(x'))"
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(¬(=(x)(x')))(bool(=(x)(x')))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "¬(=(x)(x'))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(¬(=(x)(x')))(bool(=(x)(x')))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(x)(if(¬(x))(bool(x)))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(x)(if(¬(x))(bool(x)))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "requirement": {
+                                            "goal": "or(=(x)(x'))(¬(=(x)(x')))",
+                                            "definitions": [
+
+                                            ],
+                                            "assumptions": [
+
+                                            ]
+                                        },
+                                        "justification": {
+                                            "justification_version": 1,
+                                            "justification_type": "ModusPonensJustification",
+                                            "implication": "if(List(T)(xs))(if(list_contains(xs)(x))(if(list_contains(xs)(x'))(if(no_duplicates(xs))(or(=(x)(x'))(¬(=(x)(x')))))))"
+                                        },
+                                        "dependencies": [
+                                            {
+                                                "requirement": {
+                                                    "goal": "List(T)(xs)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "list_contains(xs)(x)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "list_contains(xs)(x')",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "no_duplicates(xs)",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "AssumptionJustification"
+                                                },
+                                                "dependencies": [
+
+                                                ]
+                                            },
+                                            {
+                                                "requirement": {
+                                                    "goal": "if(List(T)(xs))(if(list_contains(xs)(x))(if(list_contains(xs)(x'))(if(no_duplicates(xs))(or(=(x)(x'))(¬(=(x)(x')))))))",
+                                                    "definitions": [
+
+                                                    ],
+                                                    "assumptions": [
+
+                                                    ]
+                                                },
+                                                "justification": {
+                                                    "justification_version": 1,
+                                                    "justification_type": "RefineJustification",
+                                                    "general": "forall(T)(forall(xs)(if(List(T)(xs))(forall(x)(if(list_contains(xs)(x))(forall(x')(if(list_contains(xs)(x'))(if(no_duplicates(xs))(or(=(x)(x'))(¬(=(x)(x')))))))))))"
+                                                },
+                                                "dependencies": [
+                                                    {
+                                                        "requirement": {
+                                                            "goal": "forall(T)(forall(xs)(if(List(T)(xs))(forall(x)(if(list_contains(xs)(x))(forall(x')(if(list_contains(xs)(x'))(if(no_duplicates(xs))(or(=(x)(x'))(¬(=(x)(x')))))))))))",
+                                                            "definitions": [
+
+                                                            ],
+                                                            "assumptions": [
+
+                                                            ]
+                                                        },
+                                                        "justification": {
+                                                            "justification_version": 1,
+                                                            "justification_type": "AssumptionJustification"
+                                                        },
+                                                        "dependencies": [
+
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
                                 ]
                             }
                         ]
@@ -5028,7 +5298,8 @@
                                                                                                         },
                                                                                                         "justification": {
                                                                                                             "justification_version": 1,
-                                                                                                            "justification_type": "MatchingJustification"
+                                                                                                            "justification_type": "MatchingJustification",
+                                                                                                            "new_type_name": "???"
                                                                                                         },
                                                                                                         "dependencies": [
                                                                                                             {
@@ -7331,7 +7602,8 @@
                                                                                                                                 },
                                                                                                                                 "justification": {
                                                                                                                                     "justification_version": 1,
-                                                                                                                                    "justification_type": "MatchingJustification"
+                                                                                                                                    "justification_type": "MatchingJustification",
+                                                                                                                                    "new_type_name": "???"
                                                                                                                                 },
                                                                                                                                 "dependencies": [
                                                                                                                                     {
@@ -8063,12 +8335,8 @@
                                                                                                                                     ]
                                                                                                                                 },
                                                                                                                                 "justification": {
-                                                                                                                                    "justification_version": 1,
-                                                                                                                                    "justification_type": "IntroducedDoubleNegativeJustification",
-                                                                                                                                    "location_expr_item": "¬(¬(q(x)))",
-                                                                                                                                    "location_indeces": [
-
-                                                                                                                                    ]
+                                                                                                                                    "justification_version": 2,
+                                                                                                                                    "justification_type": "IntroducedDoubleNegativeJustification"
                                                                                                                                 },
                                                                                                                                 "dependencies": [
                                                                                                                                     {
@@ -8308,7 +8576,8 @@
                                                                                                                                 },
                                                                                                                                 "justification": {
                                                                                                                                     "justification_version": 1,
-                                                                                                                                    "justification_type": "MatchingJustification"
+                                                                                                                                    "justification_type": "MatchingJustification",
+                                                                                                                                    "new_type_name": "???"
                                                                                                                                 },
                                                                                                                                 "dependencies": [
                                                                                                                                     {
@@ -9608,12 +9877,8 @@
                                                                                                                                     ]
                                                                                                                                 },
                                                                                                                                 "justification": {
-                                                                                                                                    "justification_version": 1,
-                                                                                                                                    "justification_type": "IntroducedDoubleNegativeJustification",
-                                                                                                                                    "location_expr_item": "¬(¬(q(x)))",
-                                                                                                                                    "location_indeces": [
-
-                                                                                                                                    ]
+                                                                                                                                    "justification_version": 2,
+                                                                                                                                    "justification_type": "IntroducedDoubleNegativeJustification"
                                                                                                                                 },
                                                                                                                                 "dependencies": [
                                                                                                                                     {
